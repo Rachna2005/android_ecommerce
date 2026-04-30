@@ -31,7 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="50dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,10 +51,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/image"
+                android:textColor="@color/primary"
                 android:fontFamily="@font/manrope_bold"
                 android:text="chronos Elite Seres 7"
                 android:textSize="30dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:paddingLeft="20dp"/>
 
             <LinearLayout
                 android:id="@+id/rating"
@@ -61,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text"
                 android:orientation="horizontal"
+                android:paddingLeft="20dp"
 
                 >
 
@@ -90,7 +94,8 @@
                 android:layout_below="@id/rating"
                 android:fontFamily="@font/manrope_bold"
                 android:text="Color"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:paddingLeft="20dp"/>
 
             <TextView
                 android:id="@+id/caseSize"
@@ -100,6 +105,7 @@
                 android:fontFamily="@font/manrope_bold"
                 android:text="Case Size"
                 android:textSize="20dp"
+                android:paddingLeft="20dp"
 
                 />
 
@@ -115,7 +121,9 @@
                 android:id="@+id/des"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/description">
+                android:layout_below="@id/description"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
                 <TextView
                     android:id="@+id/description"
@@ -145,13 +153,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/des"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 android:text="@string/product_description" />
 
             <LinearLayout
                 android:id="@+id/userRating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/description">
+                android:layout_below="@id/description"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
                 <TextView
                     android:id="@+id/title"
@@ -160,7 +172,8 @@
                     android:layout_below="@id/caseSize"
                     android:fontFamily="@font/manrope_bold"
                     android:text="User Reviews"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                   />
 
                 <TextView
                     android:layout_width="0dp"
@@ -178,7 +191,9 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp">
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addToCart"
                     android:layout_width="200dp"
