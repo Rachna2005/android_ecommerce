@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="#F6F7F9"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProductDetail">
@@ -15,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/outline_arrow_back_24" />
+            android:src="@drawable/ic_arrow_back" />
 
         <TextView
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/product_detail" />
+                android:src="@drawable/img_product_detail" />
 
             <TextView
 
@@ -85,7 +86,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="5dp"
-                    android:src="@drawable/star_svgrepo_com" />
+                    android:src="@drawable/ic_star" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -128,13 +129,13 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/circle_border" />
+                        android:background="@drawable/bg_circle_border" />
 
                     <View
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/circle"
+                        android:background="@drawable/bg_circle"
                         android:backgroundTint="#FF795548" />
                 </FrameLayout>
 
@@ -142,13 +143,13 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="30dp"
-                    android:background="@drawable/circle"
+                    android:background="@drawable/bg_circle"
                     android:backgroundTint="@color/secondary" />
 
                 <View
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/circle"
+                    android:background="@drawable/bg_circle"
                     android:backgroundTint="@color/black" />
             </LinearLayout>
 
@@ -224,7 +225,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/outline_expand_circle_up_24" />
+                    android:src="@drawable/ic_expand_circle_up" />
             </LinearLayout>
 
             <TextView
@@ -278,7 +279,7 @@
                     android:id="@+id/profile"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/profile_avata"
+                    android:src="@drawable/img_profile_avata"
                     app:shapeAppearanceOverlay="@style/CircleImage" />
 
                 <!-- Content positioned NEXT to image -->
@@ -310,27 +311,27 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/star_svgrepo_com" />
+                            android:src="@drawable/ic_star" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/star_svgrepo_com" />
+                            android:src="@drawable/ic_star" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/star_svgrepo_com" />
+                            android:src="@drawable/ic_star" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/star_svgrepo_com" />
+                            android:src="@drawable/ic_star" />
 
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/star_svgrepo_com" />
+                            android:src="@drawable/ic_star" />
                     </LinearLayout>
                 </LinearLayout>
 

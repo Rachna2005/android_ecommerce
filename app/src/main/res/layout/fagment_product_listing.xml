@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
+    android:background="#F6F7F9"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -23,8 +24,8 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-
-        android:background="@drawable/rounded_bg">
+android:padding="15dp"
+        android:background="@drawable/bg_rounded_bg">
 
         <!-- Search Icon -->
         <ImageView
@@ -61,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/rounded_bg_blue"
+            android:background="@drawable/bg_rounded_bg_blue"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="25dp"
@@ -71,7 +72,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/filter"
+                android:src="@drawable/ic_filter"
                 android:layout_marginRight="10dp"
                 />
             <TextView
@@ -85,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/rounded_border"
+            android:background="@drawable/bg_rounded_border"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="25dp"
@@ -110,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/rounded_border"
+            android:background="@drawable/bg_rounded_border"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:paddingLeft="25dp"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F2F8"
+    android:background="#F6F7F9"
     android:fillViewport="true">
 
     <LinearLayout
@@ -48,7 +48,7 @@
             android:layout_marginBottom="12dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="#FFFFFF"
+            app:cardBackgroundColor="@color/white"
            >
 
             <RelativeLayout
@@ -62,7 +62,7 @@
                     android:layout_height="72dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/black_tshirt"
+                    android:src="@drawable/img_black_tshirt"
 
                     android:background="#F5F5F5"
                      />
@@ -133,7 +133,7 @@
                                 android:gravity="center"
                                 android:textSize="18sp"
                                 android:textColor="#333333"
-                                android:background="@drawable/circle"
+                                android:background="@drawable/bg_circle"
                                 android:backgroundTint="@color/white"/>
 
                             <TextView
@@ -152,7 +152,7 @@
                                 android:gravity="center"
                                 android:textSize="18sp"
                                 android:textColor="#333333"
-                                android:background="@drawable/circle"
+                                android:background="@drawable/bg_circle"
                                 android:backgroundTint="@color/white"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -183,7 +183,7 @@
                     android:layout_height="72dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/red_sneakers"
+                    android:src="@drawable/img_red_sneakers"
                     android:scaleType="centerCrop"
                     android:background="#F5F5F5"
                     android:contentDescription="Chronos Minimal" />
@@ -255,7 +255,7 @@
                                 android:gravity="center"
                                 android:textSize="18sp"
                                 android:textColor="#333333"
-                                android:background="@drawable/circle"
+                                android:background="@drawable/bg_circle"
                                 android:backgroundTint="@color/white"/>
 
                             <TextView
@@ -274,7 +274,7 @@
                                 android:gravity="center"
                                 android:textSize="18sp"
                                 android:textColor="#333333"
-                                android:background="@drawable/circle"
+                                android:background="@drawable/bg_circle"
                                 android:backgroundTint="@color/white"/>
                         </LinearLayout>
 
@@ -306,11 +306,10 @@
                     android:layout_height="72dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/silver_watch"
+                    android:src="@drawable/img_silver_watch"
                     android:scaleType="centerCrop"
                     android:background="#222222"
-                    android:contentDescription="Core Tee" />
-
+                     />
                 <ImageView
                     android:id="@+id/btn_delete_watch"
                     android:layout_width="20dp"
@@ -378,7 +377,7 @@
                                 android:gravity="center"
                                 android:textSize="18sp"
                                 android:textColor="#333333"
-                                android:background="@drawable/circle"
+                                android:background="@drawable/bg_circle"
                                 android:backgroundTint="@color/white"/>
 
                             <TextView
@@ -397,7 +396,7 @@
                                 android:gravity="center"
                                 android:textSize="18sp"
                                 android:textColor="#333333"
-                                android:background="@drawable/circle"
+                                android:background="@drawable/bg_circle"
                                 android:backgroundTint="@color/white"/>
                         </LinearLayout>
 
@@ -609,7 +608,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$624.00 "
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:alpha="0.85"
                     android:clickable="false"

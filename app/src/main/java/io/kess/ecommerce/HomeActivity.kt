@@ -3,8 +3,6 @@ package io.kess.ecommerce
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.kess.ecommerce.adapter.ProductAdapter
@@ -18,10 +16,10 @@ class HomeActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         val productList = listOf(
-            Product(R.drawable.product1, "Elite Chrono", "FASHION", 42),
-            Product(R.drawable.product2, "Smart Watch", "TECH", 120),
-            Product(R.drawable.product3, "Running Shoes", "SPORT", 80),
-            Product(R.drawable.product4, "Leather Bag", "FASHION", 60)
+            Product(R.drawable.img_product1, "Elite Chrono", "FASHION", 42),
+            Product(R.drawable.img_product2, "Smart Watch", "TECH", 120),
+            Product(R.drawable.img_product3, "Running Shoes", "SPORT", 80),
+            Product(R.drawable.img_product4, "Leather Bag", "FASHION", 60)
         )
 
         // 🔥 IMPORTANT: grid layout (2 columns like shop apps)

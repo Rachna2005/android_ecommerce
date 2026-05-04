@@ -8,6 +8,7 @@
         android:width="1dp"
         android:color="#CCCCCC"/>
 
+
     <!-- Rounded corners -->
     <corners android:radius="20dp"/>
 

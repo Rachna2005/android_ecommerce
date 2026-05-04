@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#F6F7F9"
     >
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -15,7 +15,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="left"
-            android:src="@drawable/outline_close_small_24" />
+            android:src="@drawable/ic_close_small" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image2"/>
+                android:src="@drawable/img_image2"/>
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -97,7 +97,7 @@
         android:backgroundTint="@color/primary"
         android:text="Next"
         app:cornerRadius="20dp"
-        app:icon="@drawable/outline_arrow_forward_24"
+        app:icon="@drawable/ic_arrow_forward"
         app:iconGravity="textEnd"
         app:iconPadding="4dp" />
 

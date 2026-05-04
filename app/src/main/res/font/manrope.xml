@@ -12,8 +12,8 @@
 <!--        app:fontStyle="normal" />-->
 
     <font
-        app:font="@font/manrope_bold"
-        app:fontWeight="600"
+        app:font="@font/manrop_extrabold"
+        app:fontWeight="800"
         app:fontStyle="normal" />
 
 </font-family>

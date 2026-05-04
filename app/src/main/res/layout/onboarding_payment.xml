@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F6F7F9"
 
     >
 
@@ -15,7 +16,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="left"
-            android:src="@drawable/outline_close_small_24" />
+            android:src="@drawable/ic_close_small" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,77 +33,115 @@
             android:layout_gravity="right"
             android:fontFamily="@font/manrope_bold"
             android:text="Skip"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/primary"
+            />
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+<!--    <ImageView-->
+<!--        android:id="@+id/image"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/toolbar"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:src="@drawable/img_mage1"-->
+<!--        android:background="@drawable/bg_rounded_bg"-->
+<!--       />-->
+
+    <FrameLayout
+        android:id="@+id/imageContainer"
+        android:layout_width="350dp"
+        android:layout_height="280dp"
+        android:background="@drawable/bg_rounded_bg"
+        android:padding="24dp"
         android:layout_below="@id/toolbar"
-        android:layout_centerInParent="true"
-        android:src="@drawable/image1" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/image"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="70dp"
-        android:fontFamily="@font/manrope_bold"
-        android:text="Secure payments"
-        android:textColor="@color/primary"
-        android:textSize="30sp"
-
-        />
-
-    <TextView
-        android:id="@+id/subTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_centerInParent="true"
-        android:text="Shop with absolute peace of mind using our\n   encrypted and secure payment gateways." />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/subTitle"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/primary"
-        android:text="Get Started"
-        app:cornerRadius="15dp"
-        app:icon="@drawable/outline_arrow_forward_24"
-        app:iconGravity="textEnd"
-        app:iconPadding="4dp" />
-    <LinearLayout
-        android:id="@+id/textEnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/button"
-        android:orientation="horizontal"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
         >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/img_mage1"
+            android:padding="8dp"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottomCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_bottom_card"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="32dp"
+        android:paddingBottom="70dp"
+        android:gravity="center_horizontal">
+
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button"
-            android:layout_centerInParent="true"
-            android:text="Already have an account?"
-            android:layout_marginRight="5dp"
-            />
-        <TextView
-            android:id="@+id/signUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log In"
+            android:fontFamily="@font/manrope_bold"
+            android:text="Secure Payments"
             android:textColor="@color/primary"
-            android:textStyle="bold"/>
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/subTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Shop with absolute peace of mind using our encrypted and secure payment gateways."
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text="Get Started"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:backgroundTint="@color/primary"
+            app:cornerRadius="28dp"
+            app:icon="@drawable/ic_arrow_forward"
+            app:iconGravity="textEnd"
+            app:iconPadding="8dp"
+            app:iconTint="@android:color/white" />
+
+        <LinearLayout
+            android:id="@+id/loginRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/signUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Log In"
+                android:textColor="@color/secondary"
+                android:textSize="13sp"
+                 />
+
+        </LinearLayout>
 
     </LinearLayout>
 

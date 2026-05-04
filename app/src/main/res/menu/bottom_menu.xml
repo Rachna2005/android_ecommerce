@@ -8,12 +8,12 @@
     <item
         android:id="@+id/category"
         android:title="CATEGORIES"
-        android:icon="@drawable/category"/>
+        android:icon="@drawable/img_category"/>
 
     <item
         android:id="@+id/cart"
         android:title="CART"
-        android:icon="@drawable/cart"/>
+        android:icon="@drawable/img_cart"/>
     <item
         android:id="@+id/order"
         android:title="ORDERS"
@@ -22,5 +22,5 @@
     <item
         android:id="@+id/profile"
         android:title="PROFILE"
-        android:icon="@drawable/profile"/>
+        android:icon="@drawable/img_profile"/>
 </menu>
