@@ -12,22 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
         <activity
-            android:name=".OrderHistoryActivity"
+            android:name=".view.OrderHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashSaleActivity"
+            android:name=".view.SplashSaleActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductDetailActivity"
+            android:name=".view.ProductDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".CheckoutActivity"
+            android:name=".view.CheckoutActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".view.SignUpActivity"
             android:exported="false">
 
             <!-- <intent-filter> -->
@@ -38,13 +38,13 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".Onboarding2Activity"
+            android:name=".view.Onboarding2Activity"
             android:exported="false" />
         <activity
-            android:name=".Onboarding1Activity"
+            android:name=".view.Onboarding1Activity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".view.SplashScreenActivity"
             android:exported="false">
 
             <!-- <intent-filter> -->
@@ -73,7 +73,7 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

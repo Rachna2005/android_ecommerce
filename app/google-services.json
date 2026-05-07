@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "603597219770",
+    "project_id": "e-commerce-791b5",
+    "storage_bucket": "e-commerce-791b5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603597219770:android:4c96beec78f78eb23d5f83",
+        "android_client_info": {
+          "package_name": "io.kess.ecommerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgaWabgE58OaX8dHEMIcP-soDiLIM8X7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

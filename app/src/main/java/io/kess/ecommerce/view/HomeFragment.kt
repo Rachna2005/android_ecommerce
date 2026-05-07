@@ -1,21 +1,17 @@
-package io.kess.ecommerce
+package io.kess.ecommerce.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
-import io.kess.ecommerce.adapter.ImageSliderAdapter
+import io.kess.ecommerce.R
 import io.kess.ecommerce.adapter.ProductAdapter
 import io.kess.ecommerce.model.Product
-import java.util.logging.Handler
 
 class HomeFragment : Fragment() {
 
