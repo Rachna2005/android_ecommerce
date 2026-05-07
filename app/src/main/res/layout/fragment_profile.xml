@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#F6F7F9"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F6F7F9">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="150dp">
+        android:paddingBottom="100dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profile"
@@ -18,9 +18,7 @@
             android:layout_marginTop="40dp"
             android:src="@drawable/img_profile_avata"
             app:shapeAppearanceOverlay="@style/CircleImage"
-
             />
-
         <TextView
             android:id="@+id/u_name"
             android:layout_width="wrap_content"
@@ -55,13 +53,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/luxMember"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+
+            android:gravity="center"
             android:orientation="horizontal"
-            android:paddingStart="20dp"
+
             >
 
-            <!-- ITEM 1 - Orders -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,9 +67,8 @@
                 android:background="@drawable/bg_rounded_in_profile"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingVertical="15dp"
                 android:paddingHorizontal="35dp"
-                >
+                android:paddingVertical="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,7 +88,6 @@
 
             </LinearLayout>
 
-            <!-- ITEM 2 - Points -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,8 +96,8 @@
                 android:background="@drawable/bg_rounded_in_profile"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingVertical="15dp"
-                android:paddingHorizontal="35dp">
+                android:paddingHorizontal="35dp"
+                android:paddingVertical="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,7 +117,6 @@
 
             </LinearLayout>
 
-            <!-- ITEM 3 - Lists -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -130,8 +124,8 @@
                 android:background="@drawable/bg_rounded_in_profile"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingVertical="15dp"
-                android:paddingHorizontal="35dp">
+                android:paddingHorizontal="35dp"
+                android:paddingVertical="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,57 +152,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/cateProfile"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_rounded_bg"
             android:orientation="vertical"
             android:padding="8dp">
 
-            <!-- Order History -->
             <LinearLayout
                 android:id="@+id/orderHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/ic_order"
                     android:background="@drawable/bg_icon_rounded"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:src="@drawable/ic_order" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Order History"
                         android:textColor="@color/primary"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/manrope_bold" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Track, return, or buy again"
-                        android:textSize="12sp"
-                        android:textColor="#999999" />
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/order"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_chevron_right" />
+                    android:src="@drawable/ic_chevron_right"
+                    />
 
             </LinearLayout>
 
@@ -224,49 +219,48 @@
                 android:id="@+id/wishlist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/heart"
                     android:background="@drawable/bg_icon_rounded"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:src="@drawable/ic_heart" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Wishlist"
                         android:textColor="@color/primary"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/manrope_bold" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Items you've saved for later"
-                        android:textSize="12sp"
-                        android:textColor="#999999" />
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="20dp"
+                    android:id="@+id/favorite"
+                    android:layout_width="14dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_chevron_right" />
 
             </LinearLayout>
-
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -274,47 +268,47 @@
                 android:layout_marginEnd="16dp"
                 android:background="#F0F0F5" />
 
-            <!-- Payment Methods -->
             <LinearLayout
                 android:id="@+id/payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/ic_payment"
                     android:background="@drawable/bg_icon_rounded"
-                    android:padding="12dp" />
+                    android:padding="12dp"
+                    android:src="@drawable/ic_payment" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Payment Methods"
                         android:textColor="@color/primary"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/manrope_bold" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Securely saved cards and wallets"
-                        android:textSize="12sp"
-                        android:textColor="#999999" />
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/pay"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_chevron_right" />
@@ -328,77 +322,51 @@
                 android:layout_marginEnd="16dp"
                 android:background="#F0F0F5" />
 
-            <!-- Settings -->
             <LinearLayout
                 android:id="@+id/setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ic_setting"
                     android:background="@drawable/bg_icon_rounded"
-                    android:padding="12dp" />
-
+                    android:padding="10dp"
+                    android:src="@drawable/ic_setting" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="Settings"
                         android:textColor="@color/primary"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/manrope_bold" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Preferences, security &amp; privacy"
-                        android:textSize="12sp"
-                        android:textColor="#999999" />
+                        android:textColor="#999999"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
-
                 <ImageView
+                    android:id="@+id/settings"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/ic_chevron_right" />
-
+                    android:src="@drawable/ic_chevron_right"
+                    />
             </LinearLayout>
-
-
-
         </LinearLayout>
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_below="@id/menuCard"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:layout_marginTop="80dp">-->
-<!--            <ImageView-->
-<!--                android:layout_width="20dp"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:src="@drawable/ic_logout"/>-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Logout"-->
-<!--                android:textColor="#FF0000"-->
-<!--                android:layout_marginLeft="10dp"-->
-<!--                android:textSize="16dp"-->
-<!--                />-->
-<!--        </LinearLayout>-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogout"
@@ -406,29 +374,29 @@
             android:layout_height="56dp"
             android:layout_below="@id/menuCard"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#F8F8FA"
             android:text="Logout"
             android:textColor="#B00020"
             android:textSize="16sp"
-            android:backgroundTint="#F8F8FA"
             app:cornerRadius="18dp"
             app:icon="@drawable/ic_logout"
             app:iconGravity="textStart"
             app:iconPadding="8dp"
             app:iconTint="#B00020"
             app:strokeColor="#E8A0A0"
-            app:strokeWidth="1dp"
-            />
+            app:strokeWidth="1dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LUXE  V2.4.1"
             android:layout_below="@id/btnLogout"
             android:layout_centerHorizontal="true"
-            android:textSize="18dp"
+            android:layout_marginTop="20dp"
+            android:text="LUXE  V2.4.1"
             android:textColor="#767683"
-            android:layout_marginTop="20dp"/>
+            android:textSize="18dp" />
     </RelativeLayout>
 
 </ScrollView>

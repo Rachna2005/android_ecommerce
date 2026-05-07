@@ -6,7 +6,7 @@
     android:background="#F6F7F9"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetail">
+  >
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -223,9 +223,11 @@
                     android:layout_weight="1" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_expand_circle_up" />
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/ic_chevron_down"
+                    android:layout_marginTop="10dp"
+                  />
             </LinearLayout>
 
             <TextView

@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+        replace(fragment = HomeFragment())
         val homeBtn = findViewById<ImageView>(R.id.homeBtn)
         homeBtn.setOnClickListener {
           replace(fragment = HomeFragment())
@@ -20,6 +21,14 @@ class MainActivity : AppCompatActivity() {
         val profileBtn = findViewById<ImageView>(R.id.profileBtn)
         profileBtn.setOnClickListener {
             replace(fragment = ProfileFragment())
+        }
+        val categoryBtn = findViewById<ImageView>(R.id.categoryBtn)
+        categoryBtn.setOnClickListener {
+            replace(fragment = CategoryFragment())
+        }
+        val cartBtn = findViewById<ImageView>(R.id.cartBtn)
+        cartBtn.setOnClickListener {
+            replace(fragment = CartFragment())
         }
     }
 

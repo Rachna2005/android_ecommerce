@@ -16,9 +16,10 @@ class ProductAdapter(private val list: List<Product>): RecyclerView.Adapter<Prod
         val name = itemView.findViewById<TextView>(R.id.txtName)
         val price = itemView.findViewById<TextView>(R.id.txtPrice)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_product, parent, false) // your card file
+            .inflate(R.layout.item_product, parent, false) // card file
         return ProductViewHolder(view)
     }
 
@@ -34,3 +35,4 @@ class ProductAdapter(private val list: List<Product>): RecyclerView.Adapter<Prod
     override fun getItemCount(): Int = list.size
 
 }
+
