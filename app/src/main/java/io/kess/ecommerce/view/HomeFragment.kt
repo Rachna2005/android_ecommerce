@@ -29,15 +29,16 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.viewFlashSale)
 
-        val productList = listOf(
-            Product(R.drawable.img_product1, "Shoes", "TECH", 50),
-            Product(R.drawable.img_product2, "Bag", "FASHION", 500),
-            Product(R.drawable.img_product3, "Watch", "BEAUTY", 150),
-            Product(R.drawable.img_product4, "Shoes", "TECH", 100),
-            Product(R.drawable.img_product1, "Headphones", "FASHION", 400),
-            Product(R.drawable.img_product2, "Shoes", "BEAUTY", 550),
-            Product(R.drawable.img_product3, "Watch", "TECH", 500)
-        )
+//        val productList = listOf(
+//            Product(R.drawable.img_product1, "Shoes", "TECH", 50),
+//            Product(R.drawable.img_product2, "Bag", "FASHION", 500),
+//            Product(R.drawable.img_product3, "Watch", "BEAUTY", 150),
+//            Product(R.drawable.img_product4, "Shoes", "TECH", 100),
+//            Product(R.drawable.img_product1, "Headphones", "FASHION", 400),
+//            Product(R.drawable.img_product2, "Shoes", "BEAUTY", 550),
+//            Product(R.drawable.img_product3, "Watch", "TECH", 500)
+//        )
+
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = ProductAdapter(productList)
