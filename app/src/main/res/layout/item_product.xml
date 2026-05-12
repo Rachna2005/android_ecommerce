@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="13dp"
     app:cardElevation="4dp">
 
     <LinearLayout
@@ -25,10 +25,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_product1"
+                android:src="@drawable/img_product_detail"
                 />
 
-            <!-- Heart Icon with Circle Background -->
             <ImageView
                 android:id="@+id/btnWishlist"
                 android:layout_width="32dp"

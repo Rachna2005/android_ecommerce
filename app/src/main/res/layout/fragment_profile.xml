@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="100dp">
+        android:paddingBottom="50dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profile"
@@ -41,7 +41,7 @@
             android:background="@drawable/bg_rounded_border"
 
             android:padding="5dp"
-            android:text="LUXE MEMBER"
+            android:text="SHOPIX MEMBER"
             android:textColor="@color/secondary"
             android:textSize="10dp"
 
@@ -394,7 +394,7 @@
             android:layout_below="@id/btnLogout"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="LUXE  V2.4.1"
+            android:text="SHOPIX  V2.4.1"
             android:textColor="#767683"
             android:textSize="18dp" />
     </RelativeLayout>

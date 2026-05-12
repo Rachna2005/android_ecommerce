@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope_bold"
             android:gravity="center"
-            android:text="LUXE"
+            android:text="SHOPIX"
             android:textColor="@color/primary"
             android:textSize="18sp"
             android:textStyle="bold"/>
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:layout_centerInParent="true"
-        android:fontFamily="@font/manrope_bold"
+        android:textStyle="bold"
         android:text="Welcome Back"
         android:textColor="@color/primary"
         android:textSize="30sp"
@@ -162,7 +162,7 @@
             android:textSize="16sp"
             android:fontFamily="@font/manrope_bold"
             android:backgroundTint="@color/primary"
-            app:cornerRadius="15dp" />
+            app:cornerRadius="30dp" />
 
     </LinearLayout>
 

@@ -15,55 +15,95 @@
       android:layout_height="wrap_content"
       android:background="@color/white"
       android:paddingHorizontal="16dp"
-      android:paddingTop="20dp">
+      android:paddingTop="20dp"
+      android:paddingBottom="12dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
+      <!-- Profile Avatar -->
+      <com.google.android.material.imageview.ShapeableImageView
+          android:id="@+id/profile"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:src="@drawable/img_profile_avata"
+          app:shapeAppearanceOverlay="@style/CircleImage" />
+
+      <!-- Greeting Text Block -->
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:orientation="vertical"
+          android:layout_marginStart="12dp">
+
+        <TextView
+            android:id="@+id/tvGreeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi, Jonathan"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let\'s go shopping"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="2dp" />
+
+      </LinearLayout>
+
+      <!-- Search Icon -->
       <ImageView
-          android:id="@+id/menuBtn"
+          android:id="@+id/ivSearch"
           android:layout_width="25dp"
           android:layout_height="25dp"
-          android:src="@drawable/ic_menu"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintBottom_toBottomOf="parent"/>
+          android:src="@drawable/ic_search"
 
-      <TextView
-          android:id="@+id/title"
+          android:layout_marginEnd="10dp" />
+
+      <!-- Notification Icon with Badge -->
+      <FrameLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="LUXE"
-          android:textSize="25sp"
-          android:fontFamily="@font/manrope_medium"
-          android:textStyle="bold"
-          android:textColor="@color/primary"
-          app:layout_constraintStart_toEndOf="@id/menuBtn"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintBottom_toBottomOf="parent"
-          android:layout_marginStart="30dp"/>
+          android:layout_marginEnd="10dp">
 
-      <ImageView
-          android:id="@+id/shopBtn"
-          android:layout_width="25dp"
-          android:layout_height="25dp"
-          android:src="@drawable/ic_shopping_bag"
-          android:layout_marginRight="20dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintBottom_toBottomOf="parent"/>
+        <ImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_notification_bell"
+           />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Red dot badge -->
+        <View
+            android:id="@+id/notificationBadge"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/bg_notification_badge" />
+
+      </FrameLayout>
+
+    </LinearLayout>
 
   </com.google.android.material.appbar.MaterialToolbar>
-
   <FrameLayout
       android:id="@+id/container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginTop="?attr/actionBarSize"
-      android:layout_marginBottom="110dp" />
+      android:layout_marginTop="80dp"
+      android:layout_marginBottom="110dp"
+      />
 
   <LinearLayout
       android:id="@+id/customNav"

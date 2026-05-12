@@ -6,7 +6,8 @@
     android:layout_margin="8dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="16dp"
-    app:cardElevation="4dp">
+    app:cardElevation="0dp"
+    app:strokeColor="#E0E0E0">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="#LX-88304"
+                android:text="#PX-88304"
                 android:textColor="@color/primary"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -73,7 +74,7 @@
                 android:background="@drawable/bg_small_image_rounded"
                 android:clipToOutline="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_product1" />
+                android:src="@drawable/img_product_detail" />
 
             <ImageView
                 android:id="@+id/imgProduct2"
@@ -83,7 +84,7 @@
                 android:background="@drawable/bg_small_image_rounded"
                 android:clipToOutline="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_product1" />
+                android:src="@drawable/img_product_detail" />
 
             <ImageView
                 android:id="@+id/imgProduct3"
@@ -93,7 +94,7 @@
                 android:background="@drawable/bg_small_image_rounded"
                 android:clipToOutline="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/img_product1" />
+                android:src="@drawable/img_product_detail" />
 
             <!-- Spacer: pushes Total to end -->
             <View
@@ -130,20 +131,45 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/btnTrackOrder"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/bg_track_button"
-            android:gravity="center"
-            android:padding="14dp"
-            android:text="Track Order"
-            android:textColor="@color/primary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            />
+            android:orientation="horizontal">
+
+            <!-- Detail button -->
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:text="Detail"
+                android:textColor="@color/black"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                app:cornerRadius="30dp"
+                app:strokeColor="#E0E0E0"
+                app:strokeWidth="1dp" />
+
+            <!-- Tracking button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTracking"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:text="Tracking"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:backgroundTint="@color/primary"
+                app:cornerRadius="30dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
+

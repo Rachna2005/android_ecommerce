@@ -15,9 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/luxe"
+            android:text="SHOPIX"
             android:textColor="@color/primary"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold"/>
     </com.google.android.material.appbar.MaterialToolbar>
     <ScrollView
         android:layout_width="match_parent"
@@ -43,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:text="Create Account"
                 android:textColor="@color/primary"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -254,7 +256,7 @@
                     android:textSize="16sp"
                     android:fontFamily="@font/manrope_bold"
                     android:backgroundTint="@color/primary"
-                    app:cornerRadius="15dp" />
+                    app:cornerRadius="30dp" />
 
             </LinearLayout>
 

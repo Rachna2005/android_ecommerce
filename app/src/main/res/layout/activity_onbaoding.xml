@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/manrope_bold"
             android:paddingLeft="140dp"
-            android:text="LUXE"
+            android:text="SHOPIX"
             android:textColor="@color/primary"
             android:textStyle="bold"
             android:textSize="18sp" />
