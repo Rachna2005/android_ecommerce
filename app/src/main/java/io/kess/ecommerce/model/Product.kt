@@ -19,4 +19,4 @@ data class ProductVariant(
     val stock: Int
 )
 
-data class ProductWithCategory(val id: String, name: String)
+//data class ProductWithCategory(val id: String, name: String)
