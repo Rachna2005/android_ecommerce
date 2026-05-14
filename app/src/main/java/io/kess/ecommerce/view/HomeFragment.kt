@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -107,7 +108,6 @@ class HomeFragment : Fragment() {
             )
         )
 
-
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = ProductAdapter(productList, categoryList)
@@ -128,10 +128,13 @@ class HomeFragment : Fragment() {
 //                .replace(R.id.container, fragment).commit()
 //        }
 
-
-        view.findViewById<TextView>(R.id.seeAll).setOnClickListener {
-            val intent = Intent(requireContext(), SplashSaleActivity::class.java)
-            startActivity(intent)
+        val search = view.findViewById<ImageView>(R.id.search)
+        search.setOnClickListener {
+            (activity as MainActivity).navigation(SearchFragment())
+        }
+        val flashSaleMore = view.findViewById<TextView>(R.id.seeAll)
+        flashSaleMore.setOnClickListener {
+            (activity as MainActivity).navigation(FlashSaleFragment())
         }
     }
 }

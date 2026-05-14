@@ -27,10 +27,10 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<LinearLayout>(R.id.btnCheckout).setOnClickListener {
-            val intent  = Intent(requireContext(), CheckoutActivity::class.java)
-            startActivity(intent)
-        }
+//        view.findViewById<LinearLayout>(R.id.btnCheckout).setOnClickListener {
+//            val intent  = Intent(requireContext(), CheckoutActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
 

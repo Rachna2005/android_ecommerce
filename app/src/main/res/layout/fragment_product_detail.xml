@@ -43,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:background="@color/white"
         android:paddingLeft="30dp"
         android:paddingTop="10dp"
@@ -52,15 +53,15 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addToCart"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="0dp"
+            android:layout_width="150dp"
             android:layout_height="70dp"
             android:layout_gravity="center"
             android:layout_marginEnd="20dp"
-            android:layout_weight="1"
+
             android:text="Add to Cart"
             android:textAllCaps="false"
             android:textColor="@color/primary"
-            app:cornerRadius="15dp"
+            app:cornerRadius="30dp"
             app:strokeColor="@color/primary"
             app:strokeWidth="1dp" />
 
@@ -74,7 +75,7 @@
             android:text="Buy Now"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:cornerRadius="15dp" />
+            app:cornerRadius="30dp" />
     </LinearLayout>
 
     <!-- ScrollView above the pinned buttons -->
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bottom_card"
             android:orientation="vertical"
-            android:paddingTop="24dp"
+
             android:paddingBottom="20dp">
 
             <ImageView
