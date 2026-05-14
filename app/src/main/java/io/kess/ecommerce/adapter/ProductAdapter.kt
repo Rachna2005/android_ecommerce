@@ -36,7 +36,7 @@ class ProductAdapter(
         Glide.with(holder.itemView.context).load(product.image).into(holder.img)
         holder.name.text = product.name
         holder.price.text = "$${product.price}"
-        val categoryName = categoryMap[product.categoryID]?.name ?: "Unknown"
+        val categoryName = categoryMap[product.categoryId]?.name ?: "Unknown"
         holder.category.text = categoryName
     }
 

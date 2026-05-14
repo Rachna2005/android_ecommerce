@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.viewFlashSale)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.view_new_arrival)
 
         val categoryList = listOf(
             Category(
@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
                 id = "1",
                 image = "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
                 name = "Nike Air Max",
-                categoryID = "1",
+                categoryId = "1",
                 price = 120.0,
                 discountPercentage = 10.0,
                 description = "Comfortable running shoes"
@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
                 id = "2",
                 image = "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
                 name = "Oversized T-Shirt",
-                categoryID = "2",
+                categoryId = "2",
                 price = 35.0,
                 discountPercentage = null,
                 description = "Cotton oversized t-shirt"
@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
                 id = "3",
                 image = "https://images.unsplash.com/photo-1556821840-3a63f95609a7",
                 name = "Black Hoodie",
-                categoryID = "3",
+                categoryId = "3",
                 price = 60.0,
                 discountPercentage = 15.0,
                 description = "Warm black hoodie"
@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
                 id = "4",
                 image = "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
                 name = "Cargo Pants",
-                categoryID = "4",
+                categoryId = "4",
                 price = 55.0,
                 discountPercentage = 5.0,
                 description = "Stylish cargo pants"
@@ -100,7 +100,7 @@ class HomeFragment : Fragment() {
                 id = "5",
                 image = "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519",
                 name = "Adidas Sneakers",
-                categoryID = "1",
+                categoryId = "1",
                 price = 95.0,
                 discountPercentage = null,
                 description = "Classic adidas sneakers"
@@ -111,6 +111,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = ProductAdapter(productList, categoryList)
+
 
 //        val viewPager = view.findViewById<ViewPager2>(R.id.imageSlider)
 //        val images = listOf(
@@ -126,6 +127,7 @@ class HomeFragment : Fragment() {
 //            requireActivity().supportFragmentManager.beginTransaction()
 //                .replace(R.id.container, fragment).commit()
 //        }
+
 
         view.findViewById<TextView>(R.id.seeAll).setOnClickListener {
             val intent = Intent(requireContext(), SplashSaleActivity::class.java)

@@ -1,5 +1,6 @@
 package io.kess.ecommerce.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         val cartBtn = findViewById<ImageView>(R.id.cartBtn)
         cartBtn.setOnClickListener {
             replace(fragment = CartFragment())
+        }
+        val onSearch = findViewById<ImageView>(R.id.search)
+        onSearch.setOnClickListener {
+            val intent = Intent(this, SearchActivity:: class.java)
+            startActivity(intent)
         }
     }
 
