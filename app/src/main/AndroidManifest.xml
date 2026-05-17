@@ -11,21 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
-        <activity
-            android:name=".view.SearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.OrderHistoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.SplashSaleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.ProductDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.CheckoutActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".view.SearchActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".view.OrderHistoryActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".view.SplashSaleActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".view.ProductDetailActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".view.CheckoutActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".view.LoginActivity"
             android:exported="false" />

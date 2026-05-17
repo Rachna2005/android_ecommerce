@@ -43,7 +43,6 @@
                 android:text="Checkout"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-
                 android:clickable="false"
                 android:focusable="false" />
 

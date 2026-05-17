@@ -1,7 +1,9 @@
 package io.kess.ecommerce.view
 
+import BannerAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +12,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import io.kess.ecommerce.R
 import io.kess.ecommerce.adapter.ProductAdapter
 import io.kess.ecommerce.model.Category
 import io.kess.ecommerce.model.Product
+import java.util.logging.Handler
 
 class HomeFragment : Fragment() {
+
+    private lateinit var runnable: Runnable
+    private val handler = android.os.Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +39,36 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.view_new_arrival)
+
+        val imageList = listOf(
+            "https://picsum.photos/800/400?1",
+            "https://picsum.photos/800/400?2",
+            "https://picsum.photos/800/400?3"
+        )
+
+//        binding.viewPagerBanner.adapter = BannerAdapter(imageList)
+        val imgSlide = view.findViewById<ViewPager2>(R.id.viewPagerBanner)
+        imgSlide.adapter = BannerAdapter(imageList)
+
+        runnable = Runnable {
+
+            val current =imgSlide.currentItem
+            val next = if (current == imageList.size - 1) 0 else current + 1
+
+            imgSlide.currentItem = next
+        }
+
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+
+                val current = imgSlide.currentItem
+                val next = if (current == imageList.size - 1) 0 else current + 1
+
+                imgSlide.currentItem = next
+
+                handler.postDelayed(this, 3000)
+            }
+        }, 3000)
 
         val categoryList = listOf(
             Category(
@@ -128,6 +165,7 @@ class HomeFragment : Fragment() {
 //                .replace(R.id.container, fragment).commit()
 //        }
 
+
         val search = view.findViewById<ImageView>(R.id.search)
         search.setOnClickListener {
             (activity as MainActivity).navigation(SearchFragment())
@@ -136,5 +174,10 @@ class HomeFragment : Fragment() {
         flashSaleMore.setOnClickListener {
             (activity as MainActivity).navigation(FlashSaleFragment())
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        handler.removeCallbacksAndMessages(null)
     }
 }

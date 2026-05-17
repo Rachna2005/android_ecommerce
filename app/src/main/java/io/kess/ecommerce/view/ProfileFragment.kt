@@ -27,14 +27,14 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<ImageView>(R.id.order).setOnClickListener {
-            val intent  = Intent(requireContext(), OrderHistoryActivity::class.java)
-            startActivity(intent)
-        }
-        view.findViewById<ImageView>(R.id.favorite).setOnClickListener {
-            val intent  = Intent(requireContext(), SplashSaleActivity::class.java)
-            startActivity(intent)
-        }
+//        view.findViewById<ImageView>(R.id.order).setOnClickListener {
+//            val intent  = Intent(requireContext(), OrderHistoryActivity::class.java)
+//            startActivity(intent)
+//        }
+//        view.findViewById<ImageView>(R.id.favorite).setOnClickListener {
+//            val intent  = Intent(requireContext(), SplashSaleActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
 }
