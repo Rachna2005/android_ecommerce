@@ -1,4 +1,4 @@
-package io.kess.ecommerce.view
+package io.kess.ecommerce.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.kess.ecommerce.R
 //import io.kess.ecommerce.adapter.ProductAdapter
-import io.kess.ecommerce.model.Product
 
 class CategoryFragment : Fragment() {
 

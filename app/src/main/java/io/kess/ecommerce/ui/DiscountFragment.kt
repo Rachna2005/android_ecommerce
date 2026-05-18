@@ -1,17 +1,15 @@
-package io.kess.ecommerce.view
+package io.kess.ecommerce.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import io.kess.ecommerce.R
+import io.kess.ecommerce.databinding.FragmentDiscountScreenBinding
 import io.kess.ecommerce.databinding.FragmentFlashSaleScreenBinding
-import io.kess.ecommerce.databinding.FragmentSearchBinding
 
-class FlashSaleFragment : Fragment() {
-    private var _binding: FragmentFlashSaleScreenBinding? = null
+class DiscountFragment : Fragment() {
+    private var _binding: FragmentDiscountScreenBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +23,7 @@ class FlashSaleFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_flash_sale_screen, container, false)
-        _binding = FragmentFlashSaleScreenBinding.inflate(inflater, container, false)
+        _binding = FragmentDiscountScreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 

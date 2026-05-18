@@ -68,7 +68,7 @@
                 android:layout_weight="1"
                 android:clickable="false"
                 android:focusable="false"
-                android:text="Checkout"
+                android:text="Pay Now"
 
                 android:textColor="@color/white"
                 android:textSize="20sp" />

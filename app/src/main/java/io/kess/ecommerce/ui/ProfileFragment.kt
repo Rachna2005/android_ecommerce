@@ -1,4 +1,4 @@
-package io.kess.ecommerce.view
+package io.kess.ecommerce.ui
 
 import android.content.Intent
 import android.os.Bundle

@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:text="$215"
-                android:textColor="@color/black"
+                android:textColor="#A0A0A0"
                 android:textSize="13sp"
 
                 />

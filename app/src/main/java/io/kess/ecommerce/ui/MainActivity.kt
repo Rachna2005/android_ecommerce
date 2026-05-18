@@ -1,16 +1,12 @@
-package io.kess.ecommerce.view
+package io.kess.ecommerce.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.kess.ecommerce.R
 import io.kess.ecommerce.databinding.ActivityMainBinding
-import io.kess.ecommerce.model.Cart
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

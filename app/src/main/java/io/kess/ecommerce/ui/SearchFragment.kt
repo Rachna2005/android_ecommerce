@@ -1,12 +1,10 @@
-package io.kess.ecommerce.view
+package io.kess.ecommerce.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import io.kess.ecommerce.R
 import io.kess.ecommerce.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {

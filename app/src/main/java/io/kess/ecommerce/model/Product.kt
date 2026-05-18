@@ -11,15 +11,3 @@ data class Product(
 //    val variantID: String = ""
 )
 
-
-data class ProductVariant(
-    val id: String = "",
-    val color: String = "",
-    val imageUrl: String? = null,
-    val isAvailable: Boolean = true,
-    val size: String = "",
-    val stock: Int = 0
-)
-
-
-//data class ProductWithCategory(val id: String, name: String)
