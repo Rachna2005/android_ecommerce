@@ -11,26 +11,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerce">
+<!--        <activity-->
+<!--            android:name=".ui.SearchActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.OrderHistoryActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.SplashSaleActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ui.ProductDetailActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".view.CheckoutActivity"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".view.SearchActivity"
+            android:name=".ui.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.OrderHistoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.SplashSaleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.ProductDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.CheckoutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.SignUpActivity"
+            android:name=".ui.SignUpActivity"
             android:exported="false">
 
             <!-- <intent-filter> -->
@@ -41,48 +41,35 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".view.Onboarding2Activity"
+            android:name=".ui.Onboarding2Activity"
             android:exported="false" />
         <activity
-            android:name=".view.Onboarding1Activity"
+            android:name=".ui.Onboarding1Activity"
             android:exported="false" />
         <activity
-            android:name=".view.SplashScreenActivity"
-            android:exported="false">
+            android:name=".ui.SplashScreenActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
 
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".Test"
             android:exported="false">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+        </activity>
 
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity> <!-- <activity -->
-        <!-- android:name=".HomeActivity" -->
-        <!-- android:exported="false"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
         <activity
-            android:name=".view.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".ui.MainActivity"
+            android:exported="false">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

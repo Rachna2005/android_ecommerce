@@ -15,5 +15,5 @@ class ProductViewModel : ViewModel() {
             productList -> _products.value = productList
         }
     }
-
 }
+
