@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.kess.ecommerce.databinding.FragmentDiscountScreenBinding
-import io.kess.ecommerce.databinding.FragmentFlashSaleScreenBinding
+
 
 class DiscountFragment : Fragment() {
     private var _binding: FragmentDiscountScreenBinding? = null

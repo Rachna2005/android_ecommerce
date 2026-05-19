@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F6F7F9"
+    android:orientation="vertical"
+    >
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/manrope_bold"
+            android:gravity="center"
+            android:text="SHOPIX"
+            android:textColor="@color/primary"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/btnWishlist"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="13dp"
+            android:background="@drawable/bg_circle_transparent"
+            android:padding="6dp"
+            android:src="@drawable/ic_cart_shopping"
+            app:tint="@color/primary" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:hint="Search product"-->
+    <!--        app:boxBackgroundMode="outline"-->
+    <!--        app:boxCornerRadiusBottomEnd="12dp"-->
+    <!--        app:boxCornerRadiusBottomStart="12dp"-->
+    <!--        app:boxCornerRadiusTopEnd="12dp"-->
+    <!--        app:boxCornerRadiusTopStart="12dp"-->
+    <!--        app:boxStrokeColor="@color/primary"-->
+    <!--        app:boxStrokeWidth="1dp"-->
+    <!--        android:layout_marginStart="20dp"-->
+    <!--        android:layout_marginEnd="20dp">-->
+
+    <!--        <com.google.android.material.textfield.TextInputEditText-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:background="@null"-->
+    <!--            android:padding="13dp"-->
+    <!--            android:textSize="14sp" />-->
+
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_search_bar"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search Product..."
+            android:hintTextColor="#AAAAAA"
+            android:textColor="#1A1A2E"
+            android:textSize="15sp"
+            android:background="@null"
+            android:singleLine="true"
+            android:inputType="text"
+            android:fontFamily="sans-serif" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <LinearLayout
+            android:id="@+id/chip_price"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_chip_outline"
+            android:paddingStart="18dp"
+            android:paddingEnd="14dp"
+            android:layout_marginEnd="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textColor="#1A1A2E"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif"
+                android:layout_marginEnd="6dp" />
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:src="@drawable/ic_chevron_down" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listProduct"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+</LinearLayout>

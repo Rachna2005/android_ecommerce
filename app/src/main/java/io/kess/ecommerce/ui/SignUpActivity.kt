@@ -6,8 +6,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import io.kess.ecommerce.R
+import io.kess.ecommerce.view_model.UserViewModel
 
 class SignUpActivity : AppCompatActivity() {
+    private lateinit var viewModel: UserViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_screen)
@@ -23,4 +26,6 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
 }

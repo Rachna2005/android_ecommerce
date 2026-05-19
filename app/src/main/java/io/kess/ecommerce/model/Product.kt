@@ -8,6 +8,7 @@ data class Product(
     val price: Double = 0.0,
     val discountPercentage: Double? = null,
     val description: String = "",
-//    val variantID: String = ""
+    val createdAt: Long = System.currentTimeMillis()
+//    val createdAt: Long = 0L
 )
 

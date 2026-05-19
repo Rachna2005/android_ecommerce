@@ -2,6 +2,7 @@ package io.kess.ecommerce.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import io.kess.ecommerce.model.Product
+import org.junit.runner.notification.Failure
 
 class ProductRepository {
     val fireStore = FirebaseFirestore.getInstance()

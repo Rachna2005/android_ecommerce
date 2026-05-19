@@ -1,4 +1,4 @@
-package io.kess.ecommerce.view
+package io.kess.ecommerce.ui
 
 import BannerAdapter
 import android.content.Intent
@@ -10,13 +10,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import io.kess.ecommerce.R
-import io.kess.ecommerce.adapter.ProductAdapter
 import io.kess.ecommerce.model.Category
 import io.kess.ecommerce.model.Product
+import io.kess.ecommerce.ui.adapter.ProductAdapter
 import java.util.logging.Handler
 
 class HomeFragment : Fragment() {
@@ -27,7 +29,6 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,10 +36,11 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.view_new_arrival)
+        val recyclerViewDiscount = view.findViewById<RecyclerView>(R.id.view_discount)
+        val recyclerViewNewArrival = view.findViewById<RecyclerView>(R.id.view_new_arrival)
+        val recyclerViewAll = view.findViewById<RecyclerView>(R.id.view_all_product)
 
         val imageList = listOf(
             "https://picsum.photos/800/400?1",
@@ -46,7 +48,6 @@ class HomeFragment : Fragment() {
             "https://picsum.photos/800/400?3"
         )
 
-//        binding.viewPagerBanner.adapter = BannerAdapter(imageList)
         val imgSlide = view.findViewById<ViewPager2>(R.id.viewPagerBanner)
         imgSlide.adapter = BannerAdapter(imageList)
 
@@ -123,7 +124,6 @@ class HomeFragment : Fragment() {
                 discountPercentage = 15.0,
                 description = "Warm black hoodie"
             ),
-
             Product(
                 id = "4",
                 image = "https://images.unsplash.com/photo-1541099649105-f69ad21f3246",
@@ -145,34 +145,30 @@ class HomeFragment : Fragment() {
             )
         )
 
-        recyclerView.layoutManager =
+        // Display Discount product
+        val discountList = productList.filter { (it.discountPercentage ?:0.0)>0 }.take(5)
+        recyclerViewDiscount.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = ProductAdapter(productList, categoryList)
+        recyclerViewDiscount.adapter = ProductAdapter(discountList, ProductCardType.DISCOUNT)
 
+        // Display new arrival product
+        val newArrivalList = productList.sortedByDescending { it.createdAt }.take(4)
+        recyclerViewNewArrival.layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerViewNewArrival.adapter = ProductAdapter(newArrivalList, ProductCardType.NORMAL)
 
-//        val viewPager = view.findViewById<ViewPager2>(R.id.imageSlider)
-//        val images = listOf(
-//            R.drawable.img_product1,
-//            R.drawable.img_product2,
-//            R.drawable.img_product3,
-//        )
-//        viewPager.adapter = ImageSliderAdapter(images)
+        // Display all product
+        recyclerViewAll.layoutManager = LinearLayoutManager(requireContext(),
+            LinearLayoutManager.HORIZONTAL, false)
+        recyclerViewAll.adapter = ProductAdapter(productList.take(4), ProductCardType.NORMAL)
 
-//        val viewAll = view.findViewById<TextView>(R.id.viewAll)
-//        viewAll.setOnClickListener {
-//            val fragment = CategoryFragment()
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, fragment).commit()
-//        }
-
-
+        // Navigation
         val search = view.findViewById<ImageView>(R.id.search)
         search.setOnClickListener {
             (activity as MainActivity).navigation(SearchFragment())
         }
-        val flashSaleMore = view.findViewById<TextView>(R.id.seeAll)
-        flashSaleMore.setOnClickListener {
-            (activity as MainActivity).navigation(FlashSaleFragment())
+        val discountMore = view.findViewById<TextView>(R.id.seeAll)
+        discountMore.setOnClickListener {
+            (activity as MainActivity).navigation(DiscountFragment())
         }
     }
     override fun onDestroyView() {
