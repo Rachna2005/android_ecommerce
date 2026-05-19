@@ -15,7 +15,7 @@ class Onboarding2Activity : AppCompatActivity() {
         val skip = findViewById<TextView>(R.id.skip)
         val btn = findViewById<Button>(R.id.button)
         val listener = View.OnClickListener{
-            val intent = Intent(this, SignUpActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()
         }

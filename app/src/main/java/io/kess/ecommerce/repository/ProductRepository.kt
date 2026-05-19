@@ -9,7 +9,7 @@ class ProductRepository {
 
     fun getProduct(onResult: (List<Product>) -> Unit) {
         fireStore.collection("products").get().addOnSuccessListener { result ->
-            val productList = result.map { doc ->
+            val productList = result.documents.mapNotNull { doc ->
                 doc.toObject(Product::class.java)
             }
             onResult(productList)

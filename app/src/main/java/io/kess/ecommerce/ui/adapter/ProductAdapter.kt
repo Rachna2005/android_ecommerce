@@ -19,7 +19,6 @@ class ProductAdapter(
     private val productList: List<Product>,
     private val type: ProductCardType
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     class NormalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val img = itemView.findViewById<ImageView>(R.id.imgProduct)
         val name = itemView.findViewById<TextView>(R.id.txtName)

@@ -84,6 +84,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEmail"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:hint="name@example.com"
@@ -141,6 +142,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputPass"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:hint="••••••••"
@@ -153,11 +155,11 @@
 
         <!-- Sign In Button -->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSignIn"
+            android:id="@+id/btnLogIn"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="28dp"
-            android:text="Sign In"
+            android:text="Log In"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:fontFamily="@font/manrope_bold"
@@ -183,10 +185,10 @@
             android:text="Don't have an account?" />
 
         <TextView
-            android:id="@+id/signUp"
+            android:id="@+id/register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="Register"
             android:textColor="@color/primary"
             android:textStyle="bold"
             android:layout_marginBottom="50dp"

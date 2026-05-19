@@ -18,22 +18,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replace(fragment = HomeFragment())
-//        val homeBtn = findViewById<ImageView>(R.id.nav_home)
-//        homeBtn.setOnClickListener {
-//          replace(fragment = HomeFragment())
-//        }
-//        val profileBtn = findViewById<ImageView>(R.id.nav_profile)
-//        profileBtn.setOnClickListener {
-//            replace(fragment = ProfileFragment())
-//        }
-//        val categoryBtn = findViewById<ImageView>(R.id.nav_category)
-//        categoryBtn.setOnClickListener {
-//            replace(fragment = CategoryFragment())
-//        }
-//        val cartBtn = findViewById<ImageView>(R.id.nav_cart)
-//        cartBtn.setOnClickListener {
-//            replace(fragment = CartFragment())
-//        }
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -44,7 +28,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
     }
 
     private fun replace(fragment: Fragment) {

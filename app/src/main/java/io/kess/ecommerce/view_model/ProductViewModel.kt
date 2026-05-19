@@ -10,6 +10,7 @@ class ProductViewModel : ViewModel() {
     private val repository = ProductRepository()
     private val _products = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> = _products
+
     fun loadProducts(){
         repository.getProduct {
             productList -> _products.value = productList
