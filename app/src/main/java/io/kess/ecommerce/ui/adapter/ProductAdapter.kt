@@ -52,6 +52,8 @@ class ProductAdapter(
         }
     }
 
+
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val product = productList[position]
         val discount = product.price * ((product.discountPercentage ?: 0.0) / 100)

@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import io.kess.ecommerce.R
 import io.kess.ecommerce.databinding.ActivityLoginScreenBinding
 import io.kess.ecommerce.databinding.ActivityRegisterScreenBinding
@@ -18,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         binding = ActivityLoginScreenBinding.inflate((layoutInflater))
         setContentView(binding.root)
         setupClick()
