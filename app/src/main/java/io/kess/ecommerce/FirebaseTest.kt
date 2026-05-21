@@ -1,21 +1,58 @@
 package io.kess.ecommerce
+
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import io.kess.ecommerce.model.Product
 import kotlin.math.log
 
 
 class FirebaseTest {
-    fun testFirebaseConnection(){
+    val fireStore = FirebaseFirestore.getInstance()
+    fun testFirebaseConnection() {
         val db = FirebaseFirestore.getInstance()
-        db.collection("products").get().addOnSuccessListener {
-            result -> Log.d("Firebase test", "Connected Successfully!")
+        db.collection("products").get().addOnSuccessListener { result ->
+            Log.d("Firebase test", "Connected Successfully!")
         }.addOnFailureListener { e ->
             Log.e("firebase test", "Connection failed: ${e.message}")
         }
     }
 
-    fun testFirebaseAuth(){
+
+    fun getProduct(
+        onResult: (List<Product>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+
+        Log.d("FIREBASE_TEST", "Fetching products...")
+
+        fireStore.collection("products")
+            .get()
+            .addOnSuccessListener { result ->
+
+                Log.d("FIREBASE_TEST", "Documents count: ${result.size()}")
+
+                val productList = result.documents.mapNotNull { doc ->
+
+                    Log.d("FIREBASE_TEST", "Document ID: ${doc.id}")
+
+                    doc.toObject(Product::class.java)
+                }
+
+                Log.d("FIREBASE_TEST", "Mapped products: ${productList.size}")
+
+                onResult(productList)
+            }
+            .addOnFailureListener { e ->
+
+                Log.e("FIREBASE_TEST", "Firestore error", e)
+
+                onFailure(e)
+            }
+    }
+
+
+    fun testFirebaseAuth() {
         FirebaseAuth.getInstance()
             .createUserWithEmailAndPassword("test@gmail.com", "123456")
             .addOnSuccessListener {

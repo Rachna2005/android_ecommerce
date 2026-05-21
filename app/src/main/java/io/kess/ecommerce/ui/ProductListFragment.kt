@@ -70,7 +70,7 @@ class ProductListFragment : Fragment() {
                 }
                 "NEW_ARRIVAL" -> {
                     binding.title.text = "New Arrivals"
-                   products.sortedByDescending { it.createdAt }
+                   products.sortedByDescending { it.createdAt?.seconds ?: 0 }
                 }
                 "ALL" -> {
                     binding.title.text = "All Products"

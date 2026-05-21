@@ -88,6 +88,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
+        Log.d("PRODUCT_DEBUG", "setupRecyclerView called")
         discountAdapter = ProductAdapter(ProductCardType.DISCOUNT)
         recyclerViewDiscount.adapter = discountAdapter
         recyclerViewDiscount.layoutManager =
@@ -112,10 +113,11 @@ class HomeFragment : Fragment() {
             )
 
         viewModel.products.observe(viewLifecycleOwner) { products ->
+            Log.d("PRODUCT_DEBUG", "Observer triggered")
             val discountList = products.filter { (it.discountPercentage ?: 0.0) > 0 }.take(5)
             val newArrivalList =
                 products
-                    .sortedByDescending { it.createdAt }
+                    .sortedByDescending { it.createdAt?.seconds ?: 0 }
                     .take(4)
             discountAdapter.submitList(discountList)
             newArrivalAdapter.submitList(newArrivalList)
