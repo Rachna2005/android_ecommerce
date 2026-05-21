@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,7 @@ import io.kess.ecommerce.R
 import io.kess.ecommerce.model.Category
 import io.kess.ecommerce.model.Product
 import io.kess.ecommerce.ui.adapter.ProductAdapter
+import io.kess.ecommerce.view_model.AuthViewModel
 import io.kess.ecommerce.view_model.ProductViewModel
 import java.util.logging.Handler
 
@@ -34,6 +36,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,7 +46,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         initView(view)
         setUpBanner()
         setupDiscountProducts()
@@ -111,7 +114,6 @@ class HomeFragment : Fragment() {
             recyclerViewNewArrival.adapter =
                 ProductAdapter(newArrivalList, ProductCardType.NORMAL)
         }
-
     }
 
     private fun setupAllProducts() {
@@ -141,12 +143,30 @@ class HomeFragment : Fragment() {
             (activity as MainActivity).navigation(SearchFragment())
         }
 
-        val discountMore = view.findViewById<TextView>(R.id.seeAll)
-
+        val discountMore = view.findViewById<TextView>(R.id.discount_all)
         discountMore.setOnClickListener {
-            (activity as MainActivity).navigation(DiscountFragment())
+            openProductList("DISCOUNT")
+//            (activity as MainActivity).navigation(ProductListFragment())
+        }
+        val newMore = view.findViewById<TextView>(R.id.new_more)
+        newMore.setOnClickListener {
+            openProductList("NEW_ARRIVAL")
+        }
+        val allMore = view.findViewById<TextView>(R.id.all_seeMore)
+        allMore.setOnClickListener {
+            openProductList("ALL")
         }
     }
+
+    private fun openProductList(type: String) {
+        val fragment = ProductListFragment().apply {
+            arguments = Bundle().apply {
+                putString("TYPE", type)
+            }
+        }
+        (activity as MainActivity).navigation(fragment)
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

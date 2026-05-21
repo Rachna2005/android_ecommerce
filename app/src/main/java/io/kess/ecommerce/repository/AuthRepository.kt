@@ -5,12 +5,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import io.kess.ecommerce.model.User
 
 class AuthRepository {
-
-
-    fun getCurrentUser(onSuccess: (User) -> Unit, onFailure: () -> Unit) {
+    fun getCurrentUser(onSuccess: (User) -> Unit, onFailure: (Exception) -> Unit) {
         val dbUser = FirebaseAuth.getInstance().currentUser
         if (dbUser == null) {
-            onFailure()
+            onFailure(Exception("No user log in"))
             return
         }
         val id = dbUser.uid
@@ -22,11 +20,11 @@ class AuthRepository {
                 if (user != null) {
                     onSuccess(user)
                 } else {
-                    onFailure()
+                    onFailure(Exception("User data is null"))
                 }
             }
-            .addOnFailureListener {
-                onFailure()
+            .addOnFailureListener { e ->
+                onFailure(e)
             }
     }
 

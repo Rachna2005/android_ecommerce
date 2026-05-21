@@ -1,5 +1,6 @@
 package io.kess.ecommerce.view_model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +17,10 @@ class AuthViewModel : ViewModel() {
         repository.register(name, email, password, onSuccess = { result ->
             UserSession.currentUser = result
             _authData.value = result
-        }, onFailure = { _authData.value = null })
+        }, onFailure = { e ->
+            _authData.value = null
+            Log.d("REGISTER", e.message.toString())
+        })
     }
 
     fun login(email: String, password: String) {
@@ -25,22 +29,25 @@ class AuthViewModel : ViewModel() {
             password,
             onSuccess = { user ->
 
-
                 UserSession.currentUser = user
 
                 _authData.value = user
             },
-            onFailure = { _authData.value = null })
+            onFailure = { e ->
+                _authData.value = null
+                Log.d("LOGIN", e.message.toString())
+            })
     }
 
-    fun checkSession() {
+    fun checkUserSession() {
         repository.getCurrentUser(
             onSuccess = { user ->
                 UserSession.currentUser = user
                 _authData.value = user
             },
-            onFailure = {
+            onFailure = { e ->
                 _authData.value = null
+                Log.d("USER_SESSION", e.message.toString())
             })
     }
 }

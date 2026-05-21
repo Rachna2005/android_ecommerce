@@ -7,14 +7,14 @@ import org.junit.runner.notification.Failure
 class ProductRepository {
     val fireStore = FirebaseFirestore.getInstance()
 
-    fun getProduct(onResult: (List<Product>) -> Unit) {
+    fun getProduct(onResult: (List<Product>) -> Unit, onFailure: (Exception) -> Unit) {
         fireStore.collection("products").get().addOnSuccessListener { result ->
             val productList = result.documents.mapNotNull { doc ->
                 doc.toObject(Product::class.java)
             }
             onResult(productList)
-        }.addOnFailureListener {
-            onResult(emptyList())
+        }.addOnFailureListener { e ->
+            onFailure(e)
         }
     }
 }

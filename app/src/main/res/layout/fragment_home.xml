@@ -121,7 +121,7 @@
 
 
                 <TextView
-                    android:id="@+id/seeAll"
+                    android:id="@+id/discount_all"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -167,7 +167,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/seeMore"
+                    android:id="@+id/new_more"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

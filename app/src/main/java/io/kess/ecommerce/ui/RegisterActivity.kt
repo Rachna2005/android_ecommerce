@@ -27,7 +27,6 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
         binding.btnCreateAccount.setOnClickListener {
             val name = binding.inputName.text.toString().trim()
             val email = binding.inputEmail.text.toString().trim()
@@ -47,7 +46,6 @@ class RegisterActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.authData.observe(this) { user ->
             if (user != null) {
-
                 Toast.makeText(this, "Register Success", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
