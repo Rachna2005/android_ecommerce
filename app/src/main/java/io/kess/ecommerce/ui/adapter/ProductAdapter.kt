@@ -12,19 +12,30 @@ import io.kess.ecommerce.model.Category
 import io.kess.ecommerce.model.Product
 import io.kess.ecommerce.ui.ProductCardType
 import android.graphics.Paint
+import androidx.recyclerview.widget.DiffUtil
+
+import androidx.recyclerview.widget.ListAdapter
 
 import kotlin.times
 
 class ProductAdapter(
-    private val productList: List<Product>,
     private val type: ProductCardType
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : ListAdapter<Product, RecyclerView.ViewHolder>(DiffCallback()) {
+
+    class DiffCallback : DiffUtil.ItemCallback<Product>(){
+        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+            return oldItem == newItem
+        }
+    }
     class NormalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val img = itemView.findViewById<ImageView>(R.id.imgProduct)
         val name = itemView.findViewById<TextView>(R.id.txtName)
         val originalPrice = itemView.findViewById<TextView>(R.id.txtOldPrice)
         val discountPrice = itemView.findViewById<TextView>(R.id.txtPrice)
-
     }
 
     class DiscountViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -43,7 +54,6 @@ class ProductAdapter(
                     .inflate(R.layout.item_product, parent, false)
                 NormalViewHolder(view)
             }
-
             ProductCardType.DISCOUNT -> {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.discount_product, parent, false)
@@ -52,10 +62,12 @@ class ProductAdapter(
         }
     }
 
-
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val product = productList[position]
+//        val product = productList[position]
+//        val discount = product.price * ((product.discountPercentage ?: 0.0) / 100)
+//        val priceAfterDiscount = product.price - discount
+//        val hasDiscount = (product.discountPercentage ?: 0.0) > 0
+        val product = getItem(position)
         val discount = product.price * ((product.discountPercentage ?: 0.0) / 100)
         val priceAfterDiscount = product.price - discount
         val hasDiscount = (product.discountPercentage ?: 0.0) > 0
@@ -79,7 +91,6 @@ class ProductAdapter(
                             Paint.STRIKE_THRU_TEXT_FLAG.inv()
                 }
             }
-
             is DiscountViewHolder -> {
                 holder.name.text = product.name
                 holder.discountPrice.text = "$${String.format("%.2f", priceAfterDiscount)}"
@@ -92,8 +103,6 @@ class ProductAdapter(
         }
 
     }
-
-    override fun getItemCount(): Int = productList.size
 
 }
 

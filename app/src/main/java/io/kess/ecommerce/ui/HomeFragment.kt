@@ -33,6 +33,9 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerViewNewArrival: RecyclerView
     private lateinit var recyclerViewAll: RecyclerView
     private lateinit var imgSlide: ViewPager2
+    private lateinit var discountAdapter: ProductAdapter
+    private lateinit var newArrivalAdapter: ProductAdapter
+    private lateinit var allAdapter: ProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +53,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         initView(view)
         setUpBanner()
-        setupDiscountProducts()
-        setupNewArrivalProducts()
-        setupAllProducts()
+        setupRecyclerView()
         setupClickListeners(view)
     }
 
@@ -86,40 +87,23 @@ class HomeFragment : Fragment() {
         }, 3000)
     }
 
-    private fun setupDiscountProducts() {
-        Log.d("Is Discount are running", "Running")
-
+    private fun setupRecyclerView() {
+        discountAdapter = ProductAdapter(ProductCardType.DISCOUNT)
+        recyclerViewDiscount.adapter = discountAdapter
         recyclerViewDiscount.layoutManager =
             LinearLayoutManager(
                 requireContext(),
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-        viewModel.products.observe(viewLifecycleOwner) { products ->
-            val discountList =
-                products.filter { (it.discountPercentage ?: 0.0) > 0 }
-                    .take(5)
-            recyclerViewDiscount.adapter =
-                ProductAdapter(discountList, ProductCardType.DISCOUNT)
-        }
-    }
 
-    private fun setupNewArrivalProducts() {
-
+        newArrivalAdapter = ProductAdapter(ProductCardType.NORMAL)
+        recyclerViewNewArrival.adapter = newArrivalAdapter
         recyclerViewNewArrival.layoutManager =
             GridLayoutManager(requireContext(), 2)
-        viewModel.products.observe(viewLifecycleOwner) { products ->
-            val newArrivalList =
-                products
-                    .sortedByDescending { it.createdAt }
-                    .take(4)
-            recyclerViewNewArrival.adapter =
-                ProductAdapter(newArrivalList, ProductCardType.NORMAL)
-        }
-    }
 
-    private fun setupAllProducts() {
-
+        allAdapter = ProductAdapter(ProductCardType.NORMAL)
+        recyclerViewAll.adapter = allAdapter
         recyclerViewAll.layoutManager =
             LinearLayoutManager(
                 requireContext(),
@@ -128,12 +112,14 @@ class HomeFragment : Fragment() {
             )
 
         viewModel.products.observe(viewLifecycleOwner) { products ->
-
-            recyclerViewAll.adapter =
-                ProductAdapter(
-                    products.take(4),
-                    ProductCardType.NORMAL
-                )
+            val discountList = products.filter { (it.discountPercentage ?: 0.0) > 0 }.take(5)
+            val newArrivalList =
+                products
+                    .sortedByDescending { it.createdAt }
+                    .take(4)
+            discountAdapter.submitList(discountList)
+            newArrivalAdapter.submitList(newArrivalList)
+            allAdapter.submitList(products)
         }
     }
 

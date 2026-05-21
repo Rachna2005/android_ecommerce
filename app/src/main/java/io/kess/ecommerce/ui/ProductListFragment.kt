@@ -21,9 +21,12 @@ import io.kess.ecommerce.view_model.ProductViewModel
 class ProductListFragment : Fragment() {
     private var _binding: FragmentDisplayProductBinding? = null
     private val binding get() = _binding!!
+    private lateinit var productAdapter: ProductAdapter
+    private var type: String = "ALL"
     private lateinit var viewModel: ProductViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        type = arguments?.getString("TYPE") ?: "ALL"
     }
 
     override fun onCreateView(
@@ -37,9 +40,52 @@ class ProductListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-        viewModel.products.observe(viewLifecycleOwner) { products ->
-            displayProductCard(products)
+        setupClickListener()
+        setupRecyclerView()
+        observeProducts()
+    }
+
+    private fun setupRecyclerView(){
+        productAdapter = when(type){
+            "DISCOUNT" -> {
+                ProductAdapter(ProductCardType.DISCOUNT)
+            }
+            else -> {
+                ProductAdapter(ProductCardType.NORMAL)
+            }
         }
+        binding.listProduct.apply {
+            adapter = productAdapter
+            layoutManager = GridLayoutManager(requireContext(), 2)
+        }
+    }
+
+    private fun observeProducts(){
+        viewModel.products.observe(viewLifecycleOwner){
+            products ->
+            val result = when (type){
+                "DISCOUNT" -> {
+                    binding.title.text = "Discount Products"
+                    products.filter { (it.discountPercentage ?: 0.0) > 0 }
+                }
+                "NEW_ARRIVAL" -> {
+                    binding.title.text = "New Arrivals"
+                   products.sortedByDescending { it.createdAt }
+                }
+                "ALL" -> {
+                    binding.title.text = "All Products"
+                   products
+                }
+                else -> {
+                    binding.title.text = "Products"
+                    products
+                }
+            }
+            productAdapter.submitList(result)
+        }
+    }
+
+    private fun setupClickListener() {
         binding.backBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
@@ -47,35 +93,6 @@ class ProductListFragment : Fragment() {
             parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             (activity as MainActivity).replace(CartFragment())
         }
-    }
-
-    private fun displayProductCard(allProducts: List<Product>) {
-        val type = arguments?.getString("TYPE")
-        binding.listProduct.layoutManager = GridLayoutManager(requireContext(), 2)
-        when (type) {
-            "DISCOUNT" -> {
-                binding.title.text = "Discount Products"
-                val result = allProducts.filter { (it.discountPercentage ?: 0.0) > 0 }
-                binding.listProduct.adapter = ProductAdapter(result, ProductCardType.DISCOUNT)
-            }
-
-            "NEW_ARRIVAL" -> {
-                binding.title.text = "New Arrivals"
-                val result = allProducts.sortedByDescending { it.createdAt }
-                binding.listProduct.adapter = ProductAdapter(result, ProductCardType.NORMAL)
-            }
-
-            "ALL" -> {
-                binding.title.text = "All Products"
-                binding.listProduct.adapter = ProductAdapter(allProducts, ProductCardType.NORMAL)
-            }
-
-            else -> {
-                binding.title.text = "Products"
-                binding.listProduct.adapter = ProductAdapter(allProducts, ProductCardType.NORMAL)
-            }
-        }
-
     }
 
     override fun onResume() {

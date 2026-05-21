@@ -345,9 +345,7 @@
                     </LinearLayout>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-
         </LinearLayout>
-
     </ScrollView>
 
 </RelativeLayout>
