@@ -16,13 +16,14 @@ import io.kess.ecommerce.model.Product
 import io.kess.ecommerce.ui.adapter.ProductAdapter
 import io.kess.ecommerce.view_model.AuthViewModel
 import io.kess.ecommerce.view_model.ProductViewModel
-
+import androidx.core.widget.addTextChangedListener
 
 class ProductListFragment : Fragment() {
     private var _binding: FragmentDisplayProductBinding? = null
     private val binding get() = _binding!!
     private lateinit var productAdapter: ProductAdapter
     private var type: String = "ALL"
+    private var productList = listOf<Product>()
     private lateinit var viewModel: ProductViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +44,29 @@ class ProductListFragment : Fragment() {
         setupClickListener()
         setupRecyclerView()
         observeProducts()
+        setupSearch()
     }
 
-    private fun setupRecyclerView(){
-        productAdapter = when(type){
+    private fun setupSearch() {
+        binding.search.addTextChangedListener { editable ->
+            val query = editable.toString().trim()
+            if (query.isEmpty()) {
+                productAdapter.submitList(productList)
+            } else {
+                val filtered = productList.filter {
+                    it.name.contains(query, ignoreCase = true)
+                }
+                productAdapter.submitList(filtered)
+            }
+        }
+    }
+
+    private fun setupRecyclerView() {
+        productAdapter = when (type) {
             "DISCOUNT" -> {
                 ProductAdapter(ProductCardType.DISCOUNT)
             }
+
             else -> {
                 ProductAdapter(ProductCardType.NORMAL)
             }
@@ -60,27 +77,30 @@ class ProductListFragment : Fragment() {
         }
     }
 
-    private fun observeProducts(){
-        viewModel.products.observe(viewLifecycleOwner){
-            products ->
-            val result = when (type){
+    private fun observeProducts() {
+        viewModel.products.observe(viewLifecycleOwner) { products ->
+            val result = when (type) {
                 "DISCOUNT" -> {
                     binding.title.text = "Discount Products"
                     products.filter { (it.discountPercentage ?: 0.0) > 0 }
                 }
+
                 "NEW_ARRIVAL" -> {
                     binding.title.text = "New Arrivals"
-                   products.sortedByDescending { it.createdAt?.seconds ?: 0 }
+                    products.sortedByDescending { it.createdAt?.seconds ?: 0 }
                 }
+
                 "ALL" -> {
                     binding.title.text = "All Products"
-                   products
+                    products
                 }
+
                 else -> {
                     binding.title.text = "Products"
                     products
                 }
             }
+            productList = result
             productAdapter.submitList(result)
         }
     }

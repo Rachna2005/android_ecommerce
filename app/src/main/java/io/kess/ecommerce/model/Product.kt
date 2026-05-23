@@ -11,6 +11,5 @@ data class Product(
     val discountPercentage: Double? = null,
     val description: String = "",
     val createdAt: Timestamp? = null
-//    val createdAt: Long = 0L
 )
 

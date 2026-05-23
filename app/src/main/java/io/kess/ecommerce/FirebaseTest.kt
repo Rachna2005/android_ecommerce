@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import io.kess.ecommerce.model.Product
+import io.kess.ecommerce.model.ProductDetail
 import kotlin.math.log
 
 
@@ -17,7 +18,6 @@ class FirebaseTest {
             Log.e("firebase test", "Connection failed: ${e.message}")
         }
     }
-
 
     fun getProduct(
         onResult: (List<Product>) -> Unit,
@@ -49,6 +49,19 @@ class FirebaseTest {
 
                 onFailure(e)
             }
+    }
+
+    fun getProductDetail(productId: String, onResult: (ProductDetail) -> Unit, onFailure: (Exception) -> Unit){
+        Log.d("PRODUCT_DETAIL", "Fetching product: $productId")
+        fireStore.collection("products").document(productId).get().addOnSuccessListener {
+            productDoc ->
+            val product = productDoc.toObject(Product::class.java)
+            Log.d("PRODUCT_NAME","Product name: ${product?.name}")
+            productDoc.reference.collection("variants").get().addOnSuccessListener {
+                variantDoc ->
+            }
+        }
+
     }
 
 

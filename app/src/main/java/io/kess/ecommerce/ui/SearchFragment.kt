@@ -5,14 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.textfield.TextInputEditText
 import io.kess.ecommerce.databinding.FragmentSearchBinding
+import io.kess.ecommerce.model.Product
+import io.kess.ecommerce.ui.adapter.ProductAdapter
+import io.kess.ecommerce.view_model.ProductViewModel
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: ProductViewModel
+    private lateinit var searchAdapter: ProductAdapter
+    private var productList = listOf<Product>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,6 +38,30 @@ class SearchFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+        viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        searchAdapter = ProductAdapter(ProductCardType.NORMAL)
+        binding.recyclerView.adapter = searchAdapter
+        viewModel.products.observe(viewLifecycleOwner)
+        { products ->
+            productList = products
+            val query = binding.search.text.toString().trim()
+            setupSearch(query)
+        }
+        binding.search.addTextChangedListener { editable ->
+
+            setupSearch(editable.toString().trim())
+        }
+    }
+
+    private fun setupSearch(query: String) {
+            if (query.isEmpty()) {
+                searchAdapter.submitList(emptyList())
+            } else {
+                val filteredList = productList.filter {
+                    it.name.contains(query, ignoreCase = true)
+                }
+                searchAdapter.submitList(filteredList)
+            }
     }
 
     override fun onResume() {
