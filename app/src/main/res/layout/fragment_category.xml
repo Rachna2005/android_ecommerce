@@ -98,6 +98,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/appBar"
         android:paddingTop="16dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
         android:paddingBottom="24dp"/>
 
 

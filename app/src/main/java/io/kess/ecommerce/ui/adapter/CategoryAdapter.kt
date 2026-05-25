@@ -31,6 +31,7 @@ class CategoryAdapter(private val list: List<Category>) :
         val item = list[position]
         holder.title.text = item.name
         holder.count.text = "${item.productCount} Products"
+        holder.img.setImageResource(item.image)
         val para = holder.container.layoutParams as RelativeLayout.LayoutParams
         if(item.alignRight){
             para.addRule(RelativeLayout.ALIGN_PARENT_END)

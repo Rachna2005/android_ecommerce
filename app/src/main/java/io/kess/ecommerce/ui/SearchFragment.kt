@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.textfield.TextInputEditText
 import io.kess.ecommerce.databinding.FragmentSearchBinding
 import io.kess.ecommerce.model.Product
@@ -41,6 +42,7 @@ class SearchFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         searchAdapter = ProductAdapter(ProductCardType.NORMAL)
         binding.recyclerView.adapter = searchAdapter
+        binding.recyclerView.layoutManager =  GridLayoutManager(requireContext(), 2)
         viewModel.products.observe(viewLifecycleOwner)
         { products ->
             productList = products
