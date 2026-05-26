@@ -25,11 +25,13 @@ import io.kess.ecommerce.view_model.AuthViewModel
 import io.kess.ecommerce.view_model.ProductViewModel
 import java.util.logging.Handler
 import com.google.firebase.Timestamp
+import io.kess.ecommerce.view_model.FavoriteViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var runnable: Runnable
     private val handler = android.os.Handler(Looper.getMainLooper())
     private lateinit var viewModel: ProductViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
     private lateinit var recyclerViewDiscount: RecyclerView
     private lateinit var recyclerViewNewArrival: RecyclerView
     private lateinit var recyclerViewAll: RecyclerView
@@ -38,6 +40,7 @@ class HomeFragment : Fragment() {
     private lateinit var newArrivalAdapter: ProductAdapter
     private lateinit var allAdapter: ProductAdapter
     private var productList: List<Product> = emptyList()
+    private var favorite: Set<String> = emptySet()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +56,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
+        favoriteViewModel.favorite.observe(viewLifecycleOwner) {
+            favorite = it.toSet()
+        }
         initView(view)
         dummyData()
 //        setUpBanner()
@@ -197,7 +204,9 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         Log.d("PRODUCT_DEBUG", "setupRecyclerView called")
-        discountAdapter = ProductAdapter(ProductCardType.DISCOUNT)
+        discountAdapter = ProductAdapter(favorite) { product ->
+            favoriteViewModel.toggleFavorite(product.id)
+        }
         recyclerViewDiscount.adapter = discountAdapter
         recyclerViewDiscount.layoutManager =
             LinearLayoutManager(
@@ -206,13 +215,17 @@ class HomeFragment : Fragment() {
                 false
             )
 
-        newArrivalAdapter = ProductAdapter(ProductCardType.NORMAL)
+        newArrivalAdapter = ProductAdapter(favorite) { product ->
+            favoriteViewModel.toggleFavorite(product.id)
+        }
         recyclerViewNewArrival.adapter = newArrivalAdapter
         recyclerViewNewArrival.layoutManager =
             GridLayoutManager(requireContext(), 2)
         recyclerViewNewArrival.isNestedScrollingEnabled = false
 
-        allAdapter = ProductAdapter(ProductCardType.NORMAL)
+        allAdapter = ProductAdapter(favorite) { product ->
+            favoriteViewModel.toggleFavorite(product.id)
+        }
         recyclerViewAll.adapter = allAdapter
         recyclerViewAll.layoutManager =
             LinearLayoutManager(

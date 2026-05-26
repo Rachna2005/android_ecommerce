@@ -10,6 +10,10 @@ import io.kess.ecommerce.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var homeFragment: HomeFragment? = null
+    private var categoryFragment: CategoryFragment? = null
+    private var cartFragment: CartFragment? = null
+    private var profileFragment: ProfileFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,21 +21,56 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replace(fragment = HomeFragment())
+        homeFragment = HomeFragment()
+        supportFragmentManager.beginTransaction().add(binding.container.id, homeFragment!!).commit()
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> replace(fragment = HomeFragment())
-                R.id.nav_category -> replace(fragment = CategoryFragment())
-                R.id.nav_cart -> replace(fragment = CartFragment())
-                R.id.nav_profile -> replace(fragment = ProfileFragment())
+                R.id.nav_home -> {
+                    if(homeFragment == null){
+                        homeFragment = HomeFragment()
+                    }
+                    switchFragment(homeFragment!!)
+                }
+                R.id.nav_category -> {
+                    if(categoryFragment == null){
+                        categoryFragment = CategoryFragment()
+                    }
+                    switchFragment(categoryFragment!!)
+                }
+                R.id.nav_cart -> {
+                    if(cartFragment == null){
+                        cartFragment = CartFragment()
+                    }
+                    switchFragment(cartFragment!!)
+                }
+                R.id.nav_profile -> {
+                    if(profileFragment == null){
+                        profileFragment = ProfileFragment()
+                    }
+                    switchFragment(profileFragment!!)
+                }
             }
             true
         }
     }
-
-    fun replace(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+    private fun switchFragment(fragment: Fragment){
+        val transaction = supportFragmentManager.beginTransaction()
+        val fragments = listOfNotNull(
+            homeFragment,
+            categoryFragment,
+            cartFragment,
+            profileFragment
+        )
+        for (f in fragments){
+            transaction.hide(f)
+        }
+        if(!fragment.isAdded){
+            transaction.add(binding.container.id, fragment)
+        }else{
+            transaction.show(fragment)
+        }
+        transaction.commit()
     }
 
     fun navigation(fragment: Fragment) {

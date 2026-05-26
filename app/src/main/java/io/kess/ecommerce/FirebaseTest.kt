@@ -61,9 +61,7 @@ class FirebaseTest {
                 variantDoc ->
             }
         }
-
     }
-
 
     fun testFirebaseAuth() {
         FirebaseAuth.getInstance()

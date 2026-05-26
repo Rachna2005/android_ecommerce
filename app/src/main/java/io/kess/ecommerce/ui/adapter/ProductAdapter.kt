@@ -16,13 +16,12 @@ import androidx.recyclerview.widget.DiffUtil
 
 import androidx.recyclerview.widget.ListAdapter
 
-import kotlin.times
-
 class ProductAdapter(
-    private val type: ProductCardType
-) : ListAdapter<Product, RecyclerView.ViewHolder>(DiffCallback()) {
+    private val favoriteIds: Set<String>,
+    private val onFavoriteClick: (Product) -> Unit
+) : ListAdapter<Product, ProductAdapter.ViewHolder>(DiffCallback()) {
 
-    class DiffCallback : DiffUtil.ItemCallback<Product>(){
+    class DiffCallback : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem.id == newItem.id
         }
@@ -31,78 +30,57 @@ class ProductAdapter(
             return oldItem == newItem
         }
     }
-    class NormalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img = itemView.findViewById<ImageView>(R.id.imgProduct)
-        val name = itemView.findViewById<TextView>(R.id.txtName)
-        val originalPrice = itemView.findViewById<TextView>(R.id.txtOldPrice)
-        val discountPrice = itemView.findViewById<TextView>(R.id.txtPrice)
+
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        val btnFavorite = view.findViewById<ImageView>(R.id.btnWishlist)
+        val img = view.findViewById<ImageView>(R.id.imgProduct)
+        val name = view.findViewById<TextView>(R.id.txtName)
+        val originalPrice = view.findViewById<TextView>(R.id.txtOldPrice)
+        val discountPrice = view.findViewById<TextView>(R.id.txtPrice)
+        val discount = view.findViewById<TextView>(R.id.discountBadge)
     }
 
-    class DiscountViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img = itemView.findViewById<ImageView>(R.id.productImage)
-        val name = itemView.findViewById<TextView>(R.id.productName)
-        val discountPrice = itemView.findViewById<TextView>(R.id.currentPrice)
-        val discount = itemView.findViewById<TextView>(R.id.discountBadge)
-        val originalPrice = itemView.findViewById<TextView>(R.id.originalPrice)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_product, parent, false)
+        return ViewHolder(view)
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
-        return when (type) {
-            ProductCardType.NORMAL -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_product, parent, false)
-                NormalViewHolder(view)
-            }
-            ProductCardType.DISCOUNT -> {
-                val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.discount_product, parent, false)
-                DiscountViewHolder(view)
-            }
-        }
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        val product = productList[position]
-//        val discount = product.price * ((product.discountPercentage ?: 0.0) / 100)
-//        val priceAfterDiscount = product.price - discount
-//        val hasDiscount = (product.discountPercentage ?: 0.0) > 0
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = getItem(position)
         val discount = product.price * ((product.discountPercentage ?: 0.0) / 100)
         val priceAfterDiscount = product.price - discount
         val hasDiscount = (product.discountPercentage ?: 0.0) > 0
 
-        when (holder) {
-            is NormalViewHolder -> {
-                Glide.with(holder.itemView.context).load(product.image).into(holder.img)
-                holder.name.text = product.name
-//                holder.price.text = "$${String.format("%.2f", product.price)}"
-                if (hasDiscount) {
-                    holder.originalPrice.text = "$${String.format("%.2f", product.price)}"
-                    holder.originalPrice.paintFlags =
-                        holder.originalPrice.paintFlags or
-                                Paint.STRIKE_THRU_TEXT_FLAG
-                    holder.originalPrice.visibility = View.VISIBLE
-                    holder.discountPrice.text = "$${String.format("%.2f", priceAfterDiscount)}"
-                } else {
-                    holder.originalPrice.visibility = View.GONE
-                    holder.discountPrice.text = "$${String.format("%.2f", product.price)}"
-                    holder.originalPrice.paintFlags = holder.originalPrice.paintFlags and
-                            Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                }
-            }
-            is DiscountViewHolder -> {
-                holder.name.text = product.name
-                holder.discountPrice.text = "$${String.format("%.2f", priceAfterDiscount)}"
-                Glide.with(holder.itemView.context).load(product.image).into(holder.img)
-                holder.originalPrice.text = "$${String.format("%.2f", product.price)}"
-                holder.originalPrice.paintFlags = holder.originalPrice.paintFlags or
-                        Paint.STRIKE_THRU_TEXT_FLAG
-                holder.discount.text = "-${product.discountPercentage?.toInt()}%"
-            }
+        Glide.with(holder.itemView.context).load(product.image).into(holder.img)
+        holder.name.text = product.name
+        if (favoriteIds.contains(product.id)) {
+            holder.btnFavorite.setImageResource(R.drawable.ic_heart_fill)
+        } else {
+            holder.btnFavorite.setImageResource(R.drawable.ic_heart)
         }
+        holder.btnFavorite.setOnClickListener {
+            onFavoriteClick(product)
+        }
+//                holder.price.text = "$${String.format("%.2f", product.price)}"
+        if (hasDiscount) {
+            holder.originalPrice.text = "$${String.format("%.2f", product.price)}"
+            holder.originalPrice.paintFlags =
+                holder.originalPrice.paintFlags or
+                        Paint.STRIKE_THRU_TEXT_FLAG
+            holder.originalPrice.visibility = View.VISIBLE
+            holder.discountPrice.text = "$${String.format("%.2f", priceAfterDiscount)}"
 
+            holder.discount.text = "-${product.discountPercentage?.toInt()}%"
+        } else {
+            holder.originalPrice.visibility = View.GONE
+            holder.discountPrice.text = "$${String.format("%.2f", product.price)}"
+            holder.originalPrice.paintFlags = holder.originalPrice.paintFlags and
+                    Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            holder.discount.visibility = View.GONE
+        }
     }
-
 }
 

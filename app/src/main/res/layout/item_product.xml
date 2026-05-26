@@ -40,6 +40,21 @@
                 android:padding="6dp"
                 android:src="@drawable/ic_heart"
                 app:tint="@color/primary" />
+            <TextView
+                android:id="@+id/discountBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_badge_purple"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="-40%"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                />
 
         </FrameLayout>
         <!-- Texts -->

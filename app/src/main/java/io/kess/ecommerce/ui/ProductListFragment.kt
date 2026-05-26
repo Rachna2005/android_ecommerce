@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.R
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,13 +17,16 @@ import io.kess.ecommerce.view_model.AuthViewModel
 import io.kess.ecommerce.view_model.ProductViewModel
 import androidx.core.widget.addTextChangedListener
 import com.google.firebase.Timestamp
+import io.kess.ecommerce.view_model.FavoriteViewModel
 
 class ProductListFragment : Fragment() {
     private var _binding: FragmentDisplayProductBinding? = null
     private val binding get() = _binding!!
     private lateinit var productAdapter: ProductAdapter
+    private lateinit var favoriteViewModel: FavoriteViewModel
     private var type: String = "ALL"
     private var productList = listOf<Product>()
+    private var favorite: Set<String> = emptySet()
     private lateinit var viewModel: ProductViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,10 @@ class ProductListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
+        favoriteViewModel.favorite.observe(viewLifecycleOwner) {
+            favorite = it.toSet()
+        }
         dummyData()
         setupClickListener()
         setupRecyclerView()
@@ -171,11 +177,15 @@ class ProductListFragment : Fragment() {
     private fun setupRecyclerView() {
         productAdapter = when (type) {
             "DISCOUNT" -> {
-                ProductAdapter(ProductCardType.DISCOUNT)
+                ProductAdapter(favorite) { product ->
+                    favoriteViewModel.toggleFavorite(product.id)
+                }
             }
 
             else -> {
-                ProductAdapter(ProductCardType.NORMAL)
+                ProductAdapter(favorite) { product ->
+                    favoriteViewModel.toggleFavorite(product.id)
+                }
             }
         }
         binding.listProduct.apply {
