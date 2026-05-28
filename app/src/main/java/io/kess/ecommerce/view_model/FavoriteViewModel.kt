@@ -11,14 +11,21 @@ import io.kess.ecommerce.ui.adapter.ProductAdapter
 
 class FavoriteViewModel : ViewModel() {
     private val repository = FavoriteRepository()
-    private val _favorites = MutableLiveData<List<String>>()
-    val favorite: LiveData<List<String>> = _favorites
+    private val _favorites = MutableLiveData<Set<String>>()
+    val favorite: LiveData<Set<String>> = _favorites
 
     init {
         loadFavorite()
     }
 
     fun toggleFavorite(productId: String) {
+        val allFavorite = _favorites.value?.toMutableSet() ?: mutableSetOf()
+        if(allFavorite.contains(productId)){
+            allFavorite.remove(productId)
+        }else{
+            allFavorite.add(productId)
+        }
+        _favorites.value = allFavorite
         repository.toggleFavorite(productId)
     }
 

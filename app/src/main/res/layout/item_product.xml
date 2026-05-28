@@ -39,7 +39,7 @@
                 android:background="@drawable/bg_circle_transparent"
                 android:padding="6dp"
                 android:src="@drawable/ic_heart"
-                app:tint="@color/primary" />
+                 />
             <TextView
                 android:id="@+id/discountBadge"
                 android:layout_width="wrap_content"
@@ -76,58 +76,40 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_marginTop="10dp"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp">
 
             <TextView
                 android:id="@+id/txtPrice"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="$42.00"
+                android:text="$129"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@color/primary"
-                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtOldPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$60.00"
+                android:layout_marginStart="6dp"
+                android:text="$215"
                 android:textColor="#A0A0A0"
-                android:textSize="10sp"
+                android:textSize="13sp"
                 android:maxLines="1"
                 android:ellipsize="end"
-
-                android:layout_marginEnd="15dp"/>
-
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:orientation="horizontal">-->
-<!--                <ImageView-->
-<!--                    android:layout_width="10dp"-->
-<!--                    android:layout_height="10dp"-->
-<!--                    android:layout_marginEnd="4dp"-->
-<!--                    android:src="@drawable/ic_star_fill" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="4.8"-->
-<!--                    android:textSize="10sp" />-->
-
-<!--            </LinearLayout>-->
+                />
 
         </LinearLayout>
     </LinearLayout>

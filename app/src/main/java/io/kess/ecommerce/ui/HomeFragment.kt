@@ -25,6 +25,7 @@ import io.kess.ecommerce.view_model.AuthViewModel
 import io.kess.ecommerce.view_model.ProductViewModel
 import java.util.logging.Handler
 import com.google.firebase.Timestamp
+import io.kess.ecommerce.util.UserSession
 import io.kess.ecommerce.view_model.FavoriteViewModel
 
 class HomeFragment : Fragment() {
@@ -41,6 +42,7 @@ class HomeFragment : Fragment() {
     private lateinit var allAdapter: ProductAdapter
     private var productList: List<Product> = emptyList()
     private var favorite: Set<String> = emptySet()
+    val user = UserSession.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +58,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-        favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
-        favoriteViewModel.favorite.observe(viewLifecycleOwner) {
-            favorite = it.toSet()
+//        favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
+        viewModel.loadAllProducts()
+        favoriteViewModel = ViewModelProvider(requireActivity())[FavoriteViewModel::class.java]
+
+        val userName = view.findViewById<TextView>(R.id.tvGreeting)
+        if(user != null){
+            userName.text = "Hi, ${user.name}"
+        }else{
+            userName.text = "Guest"
         }
         initView(view)
-        dummyData()
+//        dummyData()
 //        setUpBanner()
         setupRecyclerView()
         setupClickListeners(view)
@@ -204,9 +212,10 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         Log.d("PRODUCT_DEBUG", "setupRecyclerView called")
-        discountAdapter = ProductAdapter(favorite) { product ->
+        discountAdapter = ProductAdapter(emptySet()) { product ->
             favoriteViewModel.toggleFavorite(product.id)
         }
+
         recyclerViewDiscount.adapter = discountAdapter
         recyclerViewDiscount.layoutManager =
             LinearLayoutManager(
@@ -215,17 +224,19 @@ class HomeFragment : Fragment() {
                 false
             )
 
-        newArrivalAdapter = ProductAdapter(favorite) { product ->
+        newArrivalAdapter = ProductAdapter(emptySet()) { product ->
             favoriteViewModel.toggleFavorite(product.id)
         }
+
         recyclerViewNewArrival.adapter = newArrivalAdapter
         recyclerViewNewArrival.layoutManager =
             GridLayoutManager(requireContext(), 2)
         recyclerViewNewArrival.isNestedScrollingEnabled = false
 
-        allAdapter = ProductAdapter(favorite) { product ->
+        allAdapter = ProductAdapter(emptySet()) { product ->
             favoriteViewModel.toggleFavorite(product.id)
         }
+
         recyclerViewAll.adapter = allAdapter
         recyclerViewAll.layoutManager =
             LinearLayoutManager(
@@ -234,26 +245,24 @@ class HomeFragment : Fragment() {
                 false
             )
 
-//        viewModel.products.observe(viewLifecycleOwner) { products ->
-//            Log.d("PRODUCT_DEBUG", "Observer triggered")
-//            val discountList = products.filter { (it.discountPercentage ?: 0.0) > 0 }.take(5)
-//            val newArrivalList =
-//                products
-//                    .sortedByDescending { it.createdAt?.seconds ?: 0 }
-//                    .take(4)
-//            discountAdapter.submitList(discountList)
-//            newArrivalAdapter.submitList(newArrivalList)
-//            allAdapter.submitList(products)
-//        }
+        viewModel.products.observe(viewLifecycleOwner) { products ->
+            Log.d("PRODUCT_DEBUG", "Observer triggered")
+            val discountList = products.filter { (it.discountPercentage ?: 0.0) > 0 }.take(5)
+            val newArrivalList =
+                products
+                    .sortedByDescending { it.createdAt?.seconds ?: 0 }
+                    .take(4)
+            discountAdapter.submitList(discountList)
+            newArrivalAdapter.submitList(newArrivalList)
+            allAdapter.submitList(products)
+        }
 
-        // test with dummy data
-        val discountList = productList.filter { (it.discountPercentage ?: 0.0) > 0 }.take(5)
-        val newArrivalList =
-            productList
-                .take(4)
-        discountAdapter.submitList(discountList)
-        newArrivalAdapter.submitList(newArrivalList)
-        allAdapter.submitList(productList)
+        favoriteViewModel.favorite.observe(viewLifecycleOwner) {
+            favorite = it
+            discountAdapter.updateFavorites(favorite)
+            newArrivalAdapter.updateFavorites(favorite)
+            allAdapter.updateFavorites(favorite)
+        }
     }
 
     private fun setupClickListeners(view: View) {
@@ -267,7 +276,6 @@ class HomeFragment : Fragment() {
         val discountMore = view.findViewById<TextView>(R.id.discount_all)
         discountMore.setOnClickListener {
             openProductList("DISCOUNT")
-//            (activity as MainActivity).navigation(ProductListFragment())
         }
         val newMore = view.findViewById<TextView>(R.id.new_more)
         newMore.setOnClickListener {
@@ -287,7 +295,6 @@ class HomeFragment : Fragment() {
         }
         (activity as MainActivity).navigation(fragment)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

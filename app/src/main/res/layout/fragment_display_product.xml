@@ -64,6 +64,7 @@
     <!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <LinearLayout
+        android:id="@+id/searchContainer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
@@ -92,6 +93,7 @@
     </LinearLayout>
 
     <HorizontalScrollView
+        android:id="@+id/filterContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -217,7 +219,7 @@
         android:id="@+id/listProduct"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
+
         android:layout_marginTop="10dp"
        />
 

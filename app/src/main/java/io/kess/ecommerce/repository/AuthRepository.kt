@@ -18,7 +18,9 @@ class AuthRepository {
                 val user = document.toObject(User::class.java)
 
                 if (user != null) {
-                    onSuccess(user)
+                    val userWithId = user.copy(id = document.id)
+                    onSuccess(userWithId)
+
                 } else {
                     onFailure(Exception("User data is null"))
                 }
@@ -38,7 +40,7 @@ class AuthRepository {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener { result ->
                 val uid = result.user!!.uid
-                val user = User(id = uid, name = name, email = email)
+                val user = User( name = name, email = email)
                 FirebaseFirestore.getInstance()
                     .collection("users")
                     .document(uid)

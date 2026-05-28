@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -38,10 +39,12 @@ class SplashScreenActivity : AppCompatActivity() {
             if (user != null) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                Log.d("User Status", "User = $user")
                 finish()
             } else {
                 val intent = Intent(this, Onboarding1Activity::class.java)
                 startActivity(intent)
+                Log.d("User Status", "No User")
                 finish()
             }
         }

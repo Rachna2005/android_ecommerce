@@ -17,9 +17,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
 class ProductAdapter(
-    private val favoriteIds: Set<String>,
+    private var favoriteIds: Set<String>,
     private val onFavoriteClick: (Product) -> Unit
 ) : ListAdapter<Product, ProductAdapter.ViewHolder>(DiffCallback()) {
+
+    fun updateFavorites(newFavorites: Set<String>) {
+        favoriteIds = newFavorites
+        notifyDataSetChanged()
+    }
 
     class DiffCallback : DiffUtil.ItemCallback<Product>() {
         override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {

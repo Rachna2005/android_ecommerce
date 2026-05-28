@@ -8,6 +8,7 @@
     app:cardElevation="0dp">
 
     <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_new_arrivals" />
+            android:src="@drawable/img_product_detail" />
 
         <LinearLayout
             android:id="@+id/textContainer"

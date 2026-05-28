@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import io.kess.ecommerce.databinding.FragmentSearchBinding
 import io.kess.ecommerce.model.Product
 import io.kess.ecommerce.ui.adapter.ProductAdapter
+import io.kess.ecommerce.view_model.FavoriteViewModel
 import io.kess.ecommerce.view_model.ProductViewModel
 
 class SearchFragment : Fragment() {
@@ -19,6 +20,8 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: ProductViewModel
     private lateinit var searchAdapter: ProductAdapter
+    private var favorite: Set<String> = emptySet()
+    private lateinit var favoriteViewModel: FavoriteViewModel
     private var productList = listOf<Product>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +43,11 @@ class SearchFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-        searchAdapter = ProductAdapter(ProductCardType.NORMAL)
+        favoriteViewModel = ViewModelProvider(requireActivity())[FavoriteViewModel::class.java]
+
+        searchAdapter = ProductAdapter(favorite) { product ->
+            favoriteViewModel.toggleFavorite(product.id)
+        }
         binding.recyclerView.adapter = searchAdapter
         binding.recyclerView.layoutManager =  GridLayoutManager(requireContext(), 2)
         viewModel.products.observe(viewLifecycleOwner)
@@ -48,6 +55,10 @@ class SearchFragment : Fragment() {
             productList = products
             val query = binding.search.text.toString().trim()
             setupSearch(query)
+        }
+        favoriteViewModel.favorite.observe(viewLifecycleOwner) {
+            favorite = it
+            searchAdapter.updateFavorites(favorite)
         }
         binding.search.addTextChangedListener { editable ->
 

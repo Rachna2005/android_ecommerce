@@ -1,6 +1,7 @@
 package io.kess.ecommerce.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import io.kess.ecommerce.view_model.AuthViewModel
 import io.kess.ecommerce.view_model.ProductViewModel
 import androidx.core.widget.addTextChangedListener
 import com.google.firebase.Timestamp
+import io.kess.ecommerce.ui.adapter.CategoryAdapter
 import io.kess.ecommerce.view_model.FavoriteViewModel
 
 class ProductListFragment : Fragment() {
@@ -25,12 +27,14 @@ class ProductListFragment : Fragment() {
     private lateinit var productAdapter: ProductAdapter
     private lateinit var favoriteViewModel: FavoriteViewModel
     private var type: String = "ALL"
+    private var categoryId: String? = null
     private var productList = listOf<Product>()
-    private var favorite: Set<String> = emptySet()
+    private var favoriteSet: Set<String> = emptySet()
     private lateinit var viewModel: ProductViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         type = arguments?.getString("TYPE") ?: "ALL"
+        categoryId = arguments?.getString("CATEGORY_ID")
     }
 
     override fun onCreateView(
@@ -44,18 +48,17 @@ class ProductListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-        favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
-        favoriteViewModel.favorite.observe(viewLifecycleOwner) {
-            favorite = it.toSet()
-        }
-        dummyData()
+
+        favoriteViewModel = ViewModelProvider(requireActivity())[FavoriteViewModel::class.java]
+//        dummyData()
         setupClickListener()
         setupRecyclerView()
+        loadProduct()
         observeProducts()
         setupSearch()
     }
 
-    private fun dummyData(){
+    private fun dummyData() {
         productList = listOf(
             Product(
                 id = "p001",
@@ -177,13 +180,14 @@ class ProductListFragment : Fragment() {
     private fun setupRecyclerView() {
         productAdapter = when (type) {
             "DISCOUNT" -> {
-                ProductAdapter(favorite) { product ->
+                ProductAdapter(favoriteSet) { product ->
                     favoriteViewModel.toggleFavorite(product.id)
                 }
+
             }
 
             else -> {
-                ProductAdapter(favorite) { product ->
+                ProductAdapter(favoriteSet) { product ->
                     favoriteViewModel.toggleFavorite(product.id)
                 }
             }
@@ -194,56 +198,68 @@ class ProductListFragment : Fragment() {
         }
     }
 
-    private fun observeProducts() {
-//        viewModel.products.observe(viewLifecycleOwner) { products ->
-//            val result = when (type) {
-//                "DISCOUNT" -> {
-//                    binding.title.text = "Discount Products"
-//                    products.filter { (it.discountPercentage ?: 0.0) > 0 }
-//                }
-//
-//                "NEW_ARRIVAL" -> {
-//                    binding.title.text = "New Arrivals"
-//                    products.sortedByDescending { it.createdAt?.seconds ?: 0 }
-//                }
-//
-//                "ALL" -> {
-//                    binding.title.text = "All Products"
-//                    products
-//                }
-//
-//                else -> {
-//                    binding.title.text = "Products"
-//                    products
-//                }
-//            }
-//            productList = result
-//            productAdapter.submitList(result)
-//        }
-            val result = when (type) {
-                "DISCOUNT" -> {
-                    binding.title.text = "Discount Products"
-                    productList.filter { (it.discountPercentage ?: 0.0) > 0 }
-                }
-
-                "NEW_ARRIVAL" -> {
-                    binding.title.text = "New Arrivals"
-                    productList.sortedByDescending { it.createdAt?.seconds ?: 0 }
-                }
-
-                "ALL" -> {
-                    binding.title.text = "All Products"
-                    productList
-                }
-
-                else -> {
-                    binding.title.text = "Products"
-                    productList
-                }
+    private fun loadProduct(){
+        when (type){
+            "CATEGORY" -> {
+                categoryId?.let{viewModel.categoryProduct(it)}
             }
-            productList = result
-            productAdapter.submitList(result)
+            else -> {
+                viewModel.loadAllProducts()
+            }
+        }
+    }
 
+    private fun observeProducts() {
+
+        viewModel.products.observe(viewLifecycleOwner) { products ->
+            productList = products
+            updateUi(productList, favoriteSet)
+
+        }
+
+        favoriteViewModel.favorite.observe(viewLifecycleOwner) { favorites ->
+            favoriteSet = favorites
+
+            updateUi(productList, favoriteSet)
+        }
+    }
+
+    private fun updateUi(products: List<Product>, favorite: Set<String>) {
+        val result = when (type) {
+            "CATEGORY" -> {
+                binding.title.text = arguments?.getString("CATEGORY_NAME") ?: "Category"
+                products
+            }
+
+            "DISCOUNT" -> {
+                binding.title.text = "Discount Products"
+                products.filter { (it.discountPercentage ?: 0.0) > 0 }
+            }
+
+            "NEW_ARRIVAL" -> {
+                binding.title.text = "New Arrivals"
+                products.sortedByDescending { it.createdAt?.seconds ?: 0 }
+            }
+
+            "ALL" -> {
+                binding.title.text = "All Products"
+                products
+            }
+
+            "FAVORITE" -> {
+                binding.title.text = "My Wishlist"
+                binding.filterContainer.visibility = View.GONE
+                binding.searchContainer.visibility = View.GONE
+                products.filter { favorite.contains(it.id) }
+            }
+
+            else -> {
+                binding.title.text = "Products"
+                products
+            }
+        }
+        productAdapter.submitList(result)
+        productAdapter.updateFavorites(favorite)
     }
 
     private fun setupClickListener() {
@@ -252,7 +268,7 @@ class ProductListFragment : Fragment() {
         }
         binding.btnCart.setOnClickListener {
             parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-            (activity as MainActivity).replace(CartFragment())
+            (activity as MainActivity).switchFragment(CartFragment())
         }
     }
 

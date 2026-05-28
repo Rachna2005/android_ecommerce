@@ -256,7 +256,7 @@
 
                 <ImageView
                     android:id="@+id/favorite"
-                    android:layout_width="14dp"
+                    android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_chevron_right" />
 

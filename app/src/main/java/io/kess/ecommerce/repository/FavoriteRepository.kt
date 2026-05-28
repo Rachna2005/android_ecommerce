@@ -1,5 +1,6 @@
 package io.kess.ecommerce.repository
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import io.kess.ecommerce.model.Favorite
 import io.kess.ecommerce.model.Product
@@ -10,6 +11,7 @@ class FavoriteRepository {
     val userId = UserSession.currentUser!!.id
 
     fun toggleFavorite(productId: String) {
+        Log.d("FIREBASE_DEBUG", "userId=$userId productId=$productId")
         val favorite =
             db.collection("users").document(userId).collection("favorites").document(productId)
         favorite.get()
@@ -22,13 +24,13 @@ class FavoriteRepository {
             }
     }
 
-    fun getAllFavorite(onResult: (List<String>) -> Unit) {
+    fun getAllFavorite(onResult: (Set<String>) -> Unit) {
         db.collection("users").document(userId).collection("favorites").get()
             .addOnSuccessListener { result ->
                 val ids = result.documents.map {
                     it.id
                 }
-                onResult(ids)
+                onResult(ids.toSet())
             }
     }
 }

@@ -10,10 +10,10 @@ import io.kess.ecommerce.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private var homeFragment: HomeFragment? = null
-    private var categoryFragment: CategoryFragment? = null
-    private var cartFragment: CartFragment? = null
-    private var profileFragment: ProfileFragment? = null
+    private val homeFragment = HomeFragment()
+    private val categoryFragment = CategoryFragment()
+    private val cartFragment = CartFragment()
+    private val profileFragment = ProfileFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,40 +21,30 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        homeFragment = HomeFragment()
-        supportFragmentManager.beginTransaction().add(binding.container.id, homeFragment!!).commit()
+        supportFragmentManager.beginTransaction().apply {
+            add(binding.container.id, homeFragment)
+            add(binding.container.id, categoryFragment).hide(categoryFragment)
+            add(binding.container.id, cartFragment).hide(cartFragment)
+            add(binding.container.id, profileFragment).hide(profileFragment)
+        }.commit()
+
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_home -> {
-                    if(homeFragment == null){
-                        homeFragment = HomeFragment()
-                    }
-                    switchFragment(homeFragment!!)
-                }
-                R.id.nav_category -> {
-                    if(categoryFragment == null){
-                        categoryFragment = CategoryFragment()
-                    }
-                    switchFragment(categoryFragment!!)
-                }
-                R.id.nav_cart -> {
-                    if(cartFragment == null){
-                        cartFragment = CartFragment()
-                    }
-                    switchFragment(cartFragment!!)
-                }
-                R.id.nav_profile -> {
-                    if(profileFragment == null){
-                        profileFragment = ProfileFragment()
-                    }
-                    switchFragment(profileFragment!!)
-                }
+
+                R.id.nav_home -> switchFragment(homeFragment)
+
+                R.id.nav_category -> switchFragment(categoryFragment)
+
+                R.id.nav_cart -> switchFragment(cartFragment)
+
+                R.id.nav_profile -> switchFragment(profileFragment)
             }
             true
         }
     }
-    private fun switchFragment(fragment: Fragment){
+
+    fun switchFragment(fragment: Fragment){
         val transaction = supportFragmentManager.beginTransaction()
         val fragments = listOfNotNull(
             homeFragment,

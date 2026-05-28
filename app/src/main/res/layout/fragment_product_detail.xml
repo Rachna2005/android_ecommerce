@@ -160,44 +160,75 @@
                 android:textColor="@color/primary"
                 android:textSize="20sp" />
 
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="20dp"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingStart="20dp">-->
+
+<!--                <FrameLayout-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginEnd="30dp">-->
+
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:background="@drawable/bg_circle_border" />-->
+
+<!--                    <View-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@drawable/bg_circle"-->
+<!--                        android:backgroundTint="#FF795548" />-->
+<!--                </FrameLayout>-->
+
+<!--                <View-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginEnd="30dp"-->
+<!--                    android:background="@drawable/bg_circle"-->
+<!--                    android:backgroundTint="@color/secondary" />-->
+
+<!--                <View-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:background="@drawable/bg_circle"-->
+<!--                    android:backgroundTint="@color/black" />-->
+<!--            </LinearLayout>-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="20dp">
 
-                <FrameLayout
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="30dp">
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/primary"
+                    android:text="Black"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:cornerRadius="10dp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_circle_border" />
-
-                    <View
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_circle"
-                        android:backgroundTint="#FF795548" />
-                </FrameLayout>
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="30dp"
-                    android:background="@drawable/bg_circle"
-                    android:backgroundTint="@color/secondary" />
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_circle"
-                    android:backgroundTint="@color/black" />
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Blue"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    app:cornerRadius="10dp"
+                    app:strokeColor="#FFBCAAA4"
+                    app:strokeWidth="1dp" />
             </LinearLayout>
 
             <TextView
