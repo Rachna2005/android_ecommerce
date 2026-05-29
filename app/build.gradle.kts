@@ -85,6 +85,7 @@ dependencies {
     implementation(libs.androidx.espresso.core)
     implementation(libs.firebase.auth)
     implementation(libs.androidx.ui)
+    implementation(libs.androidx.compose.remote.creation.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

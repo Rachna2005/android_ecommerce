@@ -1,171 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:background="@color/white">
-    <!-- Product Image -->
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/white">
 
-        android:background="#F5F5F5" />
-
-    <!-- Delete Icon -->
-   <LinearLayout
-       android:id="@+id/btnIcon"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignParentEnd="true"
-       android:layout_alignParentTop="true">
-       <ImageView
-           android:id="@+id/btn_favorite"
-           android:layout_width="20dp"
-           android:layout_height="20dp"
-           android:src="@drawable/ic_heart"
-           android:layout_marginEnd="7dp"
-       />
-       <ImageView
-           android:id="@+id/btn_delete"
-           android:layout_width="20dp"
-           android:layout_height="20dp"
-
-           android:src="@android:drawable/ic_menu_delete"
-           app:tint="#767683" />
-
-   </LinearLayout>
-
-    <!-- Content between image and delete icon -->
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/image"
+        android:padding="16dp">
 
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:paddingStart="12dp"
-        android:paddingEnd="8dp">
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="#F5F5F5"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_product_detail"/>
 
-        <!-- Product Name -->
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="240dp"
-            android:layout_height="wrap_content"
-            android:text="Stratus Runner "
-            android:textColor="@color/primary"
-            android:textSize="16sp"
-            android:maxLines="1"/>
-
-        <!-- Variant -->
-        <TextView
-            android:id="@+id/variant"
+        <!-- Favorite + Delete -->
+        <LinearLayout
+            android:id="@+id/btnIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Crimson Red, 42 EU"
-            android:textColor="#888888"
-            android:textSize="13sp"
-             />
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          >
-          <TextView
-              android:id="@+id/price"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="120"
-              android:textColor="#888888"
-              android:textSize="13sp"
-              android:layout_marginTop="2dp"
-              android:paddingRight="8dp"
-              />
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="x"
-              android:textColor="#888888"
-              android:textSize="13sp"
-              android:layout_marginTop="2dp"
-              android:paddingRight="8dp"/>
-          <TextView
-              android:id="@+id/quantity"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="2"
-              android:textColor="#888888"
-              android:textSize="13sp"
-              android:layout_marginTop="2dp" />
-      </LinearLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal">
 
-        <!-- Price + Stepper -->
+            <ImageView
+                android:id="@+id/btn_favorite"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_heart" />
+
+            <ImageView
+                android:id="@+id/btn_delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@android:drawable/ic_menu_delete"
+                app:tint="#767683" />
+
+        </LinearLayout>
+
+        <!-- Content -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="5dp">
+            android:layout_toEndOf="@id/image"
+            android:layout_toStartOf="@id/btnIcon"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="8dp">
 
-            <!-- Price -->
+            <!-- Title -->
             <TextView
-                android:id="@+id/totalPrice"
-                android:layout_width="0dp"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="$189.00"
-                android:textColor="@color/secondary"
-                android:textSize="15sp" />
+                android:text="Stratus Runner"
+                android:textColor="@color/primary"
+                android:textSize="16sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
 
-            <!-- Stepper -->
+            <!-- Variant -->
+            <TextView
+                android:id="@+id/variant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crimson Red, 42 EU"
+                android:textColor="#888888"
+                android:textSize="13sp" />
+
+            <!-- Price x Quantity -->
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="120"
+                    android:textColor="#888888"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" x "
+                    android:textColor="#888888"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:textColor="#888888"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <!-- Total + Stepper -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_stepper_container"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp">
+                android:layout_marginTop="6dp">
 
+                <!-- Total Price -->
                 <TextView
-                    android:id="@+id/decrease"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:text="−"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:textColor="#333333"
-                    android:background="@drawable/bg_circle"
-                    android:backgroundTint="@color/white" />
-
-                <TextView
-                    android:id="@+id/quantityNum"
-                    android:layout_width="44dp"
+                    android:id="@+id/totalPrice"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="1"
-                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="$189.00"
+                    android:textColor="@color/secondary"
                     android:textSize="15sp"
-                    android:textColor="#111111"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/increase"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:text="+"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:textColor="#333333"
-                    android:background="@drawable/bg_circle"
-                    android:backgroundTint="@color/white" />
+                <!-- Stepper -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_stepper_container"
+                    android:paddingHorizontal="6dp"
+                    android:layout_marginLeft="20dp"
+                   >
+
+                    <TextView
+                        android:id="@+id/decrease"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:text="−"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="#333333"
+                        android:background="@drawable/bg_circle"
+                        android:backgroundTint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/quantityNum"
+                        android:layout_width="44dp"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:gravity="center"
+                        android:textSize="15sp"
+                        android:textColor="#111111"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/increase"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:text="+"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="#333333"
+                        android:background="@drawable/bg_circle"
+                        android:backgroundTint="@color/white" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

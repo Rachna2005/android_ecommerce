@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.button.MaterialButton
-    android:id="@+id/btnVariant"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/btnVariant"
     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
 
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginEnd="20dp"
+    android:text="Blue"
     android:textAllCaps="false"
-android:text="Blue"
     android:textColor="@color/black"
     app:cornerRadius="10dp"
     app:strokeColor="#FFBCAAA4"
-  android:layout_marginEnd="20dp"
     app:strokeWidth="1dp" />
