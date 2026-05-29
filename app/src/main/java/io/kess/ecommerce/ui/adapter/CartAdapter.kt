@@ -16,12 +16,13 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
 
 import androidx.recyclerview.widget.ListAdapter
+import io.kess.ecommerce.model.CartItem
 
-class ProductAdapter(
+class CartAdapter(
     private var favoriteIds: Set<String>,
-    private val onFavoriteClick: (Product) -> Unit,
-    private val onProductClick: (Product) -> Unit
-) : ListAdapter<Product, ProductAdapter.ViewHolder>(DiffCallback()) {
+    private val onFavoriteClick: (CartItem) -> Unit,
+    private val onProductClick: (CartItem) -> Unit
+) : ListAdapter<CartItem, CartAdapter.ViewHolder>(DiffCallback()) {
 
     fun updateFavorites(newFavorites: Set<String>) {
         favoriteIds = newFavorites
@@ -40,30 +41,33 @@ class ProductAdapter(
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val container = view.findViewById<LinearLayout>(R.id.container)
-        val btnFavorite = view.findViewById<ImageView>(R.id.btnWishlist)
-        val img = view.findViewById<ImageView>(R.id.imgProduct)
-        val name = view.findViewById<TextView>(R.id.txtName)
-        val originalPrice = view.findViewById<TextView>(R.id.txtOldPrice)
-        val discountPrice = view.findViewById<TextView>(R.id.txtPrice)
-        val discount = view.findViewById<TextView>(R.id.discountBadge)
+        val btnFavorite = view.findViewById<ImageView>(R.id.btn_favorite)
+        val btnDelete = view.findViewById<ImageView>(R.id.btn_delete)
+        val img = view.findViewById<ImageView>(R.id.image)
+        val name = view.findViewById<TextView>(R.id.title)
+        val variant = view.findViewById<TextView>(R.id.variant)
+        val price = view.findViewById<TextView>(R.id.price)
+        val quantity = view.findViewById<TextView>(R.id.quantity)
+        val totalPrice = view.findViewById<TextView>(R.id.totalPrice)
+        val increase = view.findViewById<TextView>(R.id.increase)
+        val decrease = view.findViewById<TextView>(R.id.decrease)
+        val quantityNum = view.findViewById<TextView>(R.id.quantityNum)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_product, parent, false)
+            .inflate(R.layout.product_item_cart, parent, false)
         return ViewHolder(view)
 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val product = getItem(position)
-        val discount = product.price * ((product.discountPercentage ?: 0.0) / 100)
-        val priceAfterDiscount = product.price - discount
-        val hasDiscount = (product.discountPercentage ?: 0.0) > 0
+        val cartItem = getItem(position)
 
         Glide.with(holder.itemView.context).load(product.image).into(holder.img)
-        holder.name.text = product.name
+        holder.name.text = cartItem.price
         if (favoriteIds.contains(product.id)) {
             holder.btnFavorite.setImageResource(R.drawable.ic_heart_fill)
         } else {

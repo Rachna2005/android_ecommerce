@@ -45,9 +45,9 @@ class SearchFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         favoriteViewModel = ViewModelProvider(requireActivity())[FavoriteViewModel::class.java]
 
-        searchAdapter = ProductAdapter(favorite) { product ->
+        searchAdapter = ProductAdapter(emptySet(), { product ->
             favoriteViewModel.toggleFavorite(product.id)
-        }
+        }, {product -> openProductDetail(product.id)})
         binding.recyclerView.adapter = searchAdapter
         binding.recyclerView.layoutManager =  GridLayoutManager(requireContext(), 2)
         viewModel.products.observe(viewLifecycleOwner)
@@ -75,6 +75,14 @@ class SearchFragment : Fragment() {
                 }
                 searchAdapter.submitList(filteredList)
             }
+    }
+    private fun openProductDetail(productId: String){
+        val fragment = ProductDetailFragment().apply {
+            arguments = Bundle().apply {
+                putString("ID", productId)
+            }
+        }
+        (activity as MainActivity).navigation(fragment)
     }
 
     override fun onResume() {

@@ -212,9 +212,9 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         Log.d("PRODUCT_DEBUG", "setupRecyclerView called")
-        discountAdapter = ProductAdapter(emptySet()) { product ->
+        discountAdapter = ProductAdapter(emptySet(), { product ->
             favoriteViewModel.toggleFavorite(product.id)
-        }
+        }, {product -> openProductDetail(product.id)})
 
         recyclerViewDiscount.adapter = discountAdapter
         recyclerViewDiscount.layoutManager =
@@ -224,18 +224,18 @@ class HomeFragment : Fragment() {
                 false
             )
 
-        newArrivalAdapter = ProductAdapter(emptySet()) { product ->
+        newArrivalAdapter = ProductAdapter(emptySet(), { product ->
             favoriteViewModel.toggleFavorite(product.id)
-        }
+        }, {product -> openProductDetail(product.id)})
 
         recyclerViewNewArrival.adapter = newArrivalAdapter
         recyclerViewNewArrival.layoutManager =
             GridLayoutManager(requireContext(), 2)
         recyclerViewNewArrival.isNestedScrollingEnabled = false
 
-        allAdapter = ProductAdapter(emptySet()) { product ->
+        allAdapter = ProductAdapter(emptySet(), { product ->
             favoriteViewModel.toggleFavorite(product.id)
-        }
+        }, {product -> openProductDetail(product.id)})
 
         recyclerViewAll.adapter = allAdapter
         recyclerViewAll.layoutManager =
@@ -291,6 +291,15 @@ class HomeFragment : Fragment() {
         val fragment = ProductListFragment().apply {
             arguments = Bundle().apply {
                 putString("TYPE", type)
+            }
+        }
+        (activity as MainActivity).navigation(fragment)
+    }
+
+    private fun openProductDetail(productId: String){
+        val fragment = ProductDetailFragment().apply {
+            arguments = Bundle().apply {
+                putString("ID", productId)
             }
         }
         (activity as MainActivity).navigation(fragment)

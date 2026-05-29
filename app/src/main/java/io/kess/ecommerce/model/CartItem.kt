@@ -4,6 +4,7 @@ data class CartItem(
     val id: String = "",
     val productId: String = "",
     val variantId: String = "",
+    val name: String = "",
     val quantity: Int = 1,
     val image: String = "",
     val selectorColor: String = "",

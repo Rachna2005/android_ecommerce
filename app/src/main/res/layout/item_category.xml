@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_product_detail" />
+             />
 
         <LinearLayout
             android:id="@+id/textContainer"
@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="New Arrivals"
+
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
@@ -41,7 +41,7 @@
                 android:id="@+id/count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="208 Product"
+
                 android:layout_marginTop="4dp"
                 android:textSize="14sp"
                 android:textColor="@color/black"/>

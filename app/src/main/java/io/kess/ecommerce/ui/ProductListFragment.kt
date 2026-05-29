@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.kess.ecommerce.databinding.FragmentDiscountScreenBinding
 import io.kess.ecommerce.databinding.FragmentDisplayProductBinding
 import io.kess.ecommerce.model.Product
 import io.kess.ecommerce.ui.adapter.ProductAdapter
@@ -180,22 +179,30 @@ class ProductListFragment : Fragment() {
     private fun setupRecyclerView() {
         productAdapter = when (type) {
             "DISCOUNT" -> {
-                ProductAdapter(favoriteSet) { product ->
+                ProductAdapter(emptySet(), { product ->
                     favoriteViewModel.toggleFavorite(product.id)
-                }
+                }, {product -> openProductDetail(product.id)})
 
             }
 
             else -> {
-                ProductAdapter(favoriteSet) { product ->
+                ProductAdapter(emptySet(), { product ->
                     favoriteViewModel.toggleFavorite(product.id)
-                }
+                }, {product -> openProductDetail(product.id)})
             }
         }
         binding.listProduct.apply {
             adapter = productAdapter
             layoutManager = GridLayoutManager(requireContext(), 2)
         }
+    }
+    private fun openProductDetail(productId: String){
+        val fragment = ProductDetailFragment().apply {
+            arguments = Bundle().apply {
+                putString("ID", productId)
+            }
+        }
+        (activity as MainActivity).navigation(fragment)
     }
 
     private fun loadProduct(){

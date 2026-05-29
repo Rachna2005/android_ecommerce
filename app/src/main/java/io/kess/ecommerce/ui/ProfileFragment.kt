@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import io.kess.ecommerce.R
-import io.kess.ecommerce.databinding.FragmentDiscountScreenBinding
 import io.kess.ecommerce.databinding.FragmentProfileBinding
 import io.kess.ecommerce.util.UserSession
 import io.kess.ecommerce.view_model.AuthViewModel
