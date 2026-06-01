@@ -262,6 +262,7 @@ class HomeFragment : Fragment() {
             discountAdapter.updateFavorites(favorite)
             newArrivalAdapter.updateFavorites(favorite)
             allAdapter.updateFavorites(favorite)
+            Log.d("IN_HOME", favorite.count().toString())
         }
     }
 

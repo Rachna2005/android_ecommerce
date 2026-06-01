@@ -1,12 +1,15 @@
 package io.kess.ecommerce.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import io.kess.ecommerce.R
 import io.kess.ecommerce.databinding.ActivityMainBinding
+import io.kess.ecommerce.view_model.FavoriteViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -14,10 +17,15 @@ class MainActivity : AppCompatActivity() {
     private val categoryFragment = CategoryFragment()
     private val cartFragment = CartFragment()
     private val profileFragment = ProfileFragment()
+    private val favoriteViewModel: FavoriteViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        favoriteViewModel.loadFavorite()
+        favoriteViewModel.favorite.observe(this){ favorites ->
+
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -27,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             add(binding.container.id, cartFragment).hide(cartFragment)
             add(binding.container.id, profileFragment).hide(profileFragment)
         }.commit()
-
 
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {

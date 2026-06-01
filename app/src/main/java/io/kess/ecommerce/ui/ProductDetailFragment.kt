@@ -48,7 +48,6 @@ class ProductDetailFragment : Fragment() {
     private lateinit var oldPrice: TextView
     private lateinit var description: TextView
     private lateinit var image: ImageView
-
     private lateinit var recyclerColor: RecyclerView
     private lateinit var recyclerSize: RecyclerView
 
@@ -79,7 +78,6 @@ class ProductDetailFragment : Fragment() {
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
 
         }
-
         initViews(view)
 
         setupAdapters()
@@ -94,7 +92,6 @@ class ProductDetailFragment : Fragment() {
 
         observeProduct()
     }
-
     private fun initViews(view: View) {
 
         title = view.findViewById(R.id.mainProductTitle)
@@ -240,7 +237,6 @@ class ProductDetailFragment : Fragment() {
     private fun updateVariants() {
 
         val allVariants = productDetail.variant
-
 
         if(selectedColor == null){
             val allSizes = allVariants.distinctBy { it.size }

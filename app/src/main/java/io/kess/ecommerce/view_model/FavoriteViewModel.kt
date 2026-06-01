@@ -14,10 +14,6 @@ class FavoriteViewModel : ViewModel() {
     private val _favorites = MutableLiveData<Set<String>>()
     val favorite: LiveData<Set<String>> = _favorites
 
-    init {
-        loadFavorite()
-    }
-
     fun toggleFavorite(productId: String) {
         val allFavorite = _favorites.value?.toMutableSet() ?: mutableSetOf()
         if(allFavorite.contains(productId)){

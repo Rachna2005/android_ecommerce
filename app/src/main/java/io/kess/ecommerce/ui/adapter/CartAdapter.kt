@@ -39,6 +39,7 @@ class CartAdapter(
         val variant = view.findViewById<TextView>(R.id.variant)
 
         val price = view.findViewById<TextView>(R.id.price)
+        val quantity = view.findViewById<TextView>(R.id.quantity)
         val quantityNum = view.findViewById<TextView>(R.id.quantityNum)
         val totalPrice = view.findViewById<TextView>(R.id.totalPrice)
 
@@ -78,15 +79,13 @@ class CartAdapter(
         holder.variant.text =
             "${cartItem.selectorColor}, ${cartItem.selectSize}"
 
-
         holder.price.text = "$${String.format("%.2f", cartItem.price)}"
 
-
         holder.quantityNum.text = cartItem.quantity.toString()
+        holder.quantity.text = cartItem.quantity.toString()
 
         val total = cartItem.price * cartItem.quantity
         holder.totalPrice.text = "$${String.format("%.2f", total)}"
-
 
         if (favoriteIds.contains(cartItem.productId)) {
             holder.btnFavorite.setImageResource(R.drawable.ic_heart_fill)

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
 import io.kess.ecommerce.R
 import io.kess.ecommerce.databinding.FragmentProfileBinding
 import io.kess.ecommerce.util.UserSession
@@ -53,6 +54,15 @@ class ProfileFragment : Fragment() {
                 }
             }
             (activity as MainActivity).navigation(fragment)
+        }
+
+        binding.btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            UserSession.currentUser =  null
+            startActivity(
+                Intent(requireContext(), Onboarding1Activity::class.java)
+            )
+            requireActivity().finish()
         }
     }
 

@@ -226,7 +226,6 @@ class ProductListFragment : Fragment() {
 
         favoriteViewModel.favorite.observe(viewLifecycleOwner) { favorites ->
             favoriteSet = favorites
-
             updateUi(productList, favoriteSet)
         }
     }

@@ -237,6 +237,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/change"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -288,19 +289,22 @@
                             />
 
                         <TextView
+                            android:id="@+id/address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="123 Premium Avenue, Suite 405\nSkyline District, Metropolis 10110"
+                            android:text="phnom penh"
+                            android:maxLines="2"
                             android:textColor="#666666"
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/phone_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="+1 (555) 0123 4567"
+                            android:text="0123 4567"
                             android:textColor="#666666"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -372,6 +376,7 @@
                     </LinearLayout>
 
                     <RadioButton
+                        android:id="@+id/radioKhqr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/primary"
@@ -428,6 +433,7 @@
                     </LinearLayout>
 
                     <RadioButton
+                        android:id="@+id/radioCard"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="#AAAAAA"
@@ -483,6 +489,7 @@
                     </LinearLayout>
 
                     <RadioButton
+                        android:id="@+id/radioWallet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="#AAAAAA"
@@ -517,6 +524,7 @@
                     android:layout_marginBottom="12dp">
 
                     <TextView
+                        android:id="@+id/quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Subtotal (3 items)"
@@ -524,6 +532,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/subTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -572,7 +581,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:text="$124.90"
+                        android:text="$0.00"
                         android:textColor="#1A1A2E"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -598,6 +607,7 @@
                         android:textSize="20sp" />
 
                     <TextView
+                        android:id="@+id/totalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -659,6 +669,7 @@
                         android:textSize="10sp" />
 
                     <TextView
+                        android:id="@+id/total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"

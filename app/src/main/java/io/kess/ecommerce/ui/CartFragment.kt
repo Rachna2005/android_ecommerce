@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,7 +29,10 @@ class CartFragment : Fragment() {
     private lateinit var subTotal: TextView
     private lateinit var total: TextView
     private lateinit var totalCheckout: TextView
+    private lateinit var btnCheckout: LinearLayout
     private var favorite: Set<String> = emptySet()
+    private var sumPrice: Double = 0.0
+    private var sumQuantity: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,15 +58,17 @@ class CartFragment : Fragment() {
         setupRecyclerView()
         cartViewModel.cartItems.observe(viewLifecycleOwner){cart ->
             cartAdapter.submitList(cart)
+
             val totalPrice =
                 cart.sumOf {
                     it.price * it.quantity
                 }
+            sumPrice = totalPrice
             val totalItems =
                 cart.sumOf {
                     it.quantity
                 }
-
+            sumQuantity = totalItems
             num.text = "$totalItems"
 
             subTotal.text =
@@ -80,6 +86,16 @@ class CartFragment : Fragment() {
 
             cartAdapter.updateFavorites(favorite)
         }
+        btnCheckout.setOnClickListener {
+            val fragment = CheckOutFragment().apply {
+                arguments = Bundle().apply {
+                    putDouble("Total_price", sumPrice)
+                    putInt("Total_Quantity", sumQuantity)
+                }
+            }
+            (activity as MainActivity).navigation(fragment)
+        }
+
     }
 
     private fun initView(view: View) {
@@ -88,6 +104,7 @@ class CartFragment : Fragment() {
         subTotal = view.findViewById(R.id.subTotal)
         total = view.findViewById(R.id.total)
         totalCheckout = view.findViewById(R.id.totalCheckout)
+        btnCheckout = view.findViewById(R.id.btnCheckout)
     }
 
     private fun setupRecyclerView() {

@@ -9,8 +9,8 @@ import io.kess.ecommerce.util.UserSession
 class CartItemRepository {
     val fireStore = FirebaseFirestore.getInstance()
 
-    //    val userId = UserSession.currentUser!!.id
-    val userId = "BhsiEEtr9kYRCAYQGUdcVS5aGbx2"
+        val userId = UserSession.currentUser!!.id
+
     fun getAllCart(onResult: (List<CartItem>) -> Unit) {
         fireStore.collection("users").document(userId).collection("cart").get()
             .addOnSuccessListener { result ->

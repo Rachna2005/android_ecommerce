@@ -8,8 +8,8 @@ import io.kess.ecommerce.util.UserSession
 
 class FavoriteRepository {
     val db = FirebaseFirestore.getInstance()
-//    val userId = UserSession.currentUser!!.id
-    val userId = "BhsiEEtr9kYRCAYQGUdcVS5aGbx2"
+    val userId = UserSession.currentUser!!.id
+
 
     fun toggleFavorite(productId: String) {
         Log.d("FIREBASE_DEBUG", "userId=$userId productId=$productId")
